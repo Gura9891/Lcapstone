@@ -58,27 +58,27 @@ export default function Login({}: Props) {
   }, [userToken]);
 
   return (
-    <div className="d-flex ">
-      <div className="col-6">
-        <img src={image} alt="..." className="w-100" height={1000} />
+    <div className="login">
+      <div className="container title">
+        <h1>CyberSoft Elearning</h1>
       </div>
-      <section className="login col-6">
-        <div className="contain">
-          <h2 className="title">ĐĂNG NHẬP</h2>
-          <hr />
-          <form
-            className="form d-flex flex-wrap justify-content-between"
-            onSubmit={frm.handleSubmit}
-          >
-            <div className="form-group col-md-10 mb-4">
+      {/* <div className="col-6">
+        <img src={image} alt="..." className="w-50" height={100} />
+      </div> */}
+      <section className="container login-content col-6">
+        <div className="container content">
+          <h1 className="title">ĐĂNG NHẬP</h1>
+          {/* <hr /> */}
+          <form className="form" onSubmit={frm.handleSubmit}>
+            <div className="form-group  mb-4">
               <div className="input-group d-flex flex-column">
-                <h2>Tài khoản</h2>
+                <h4>Tài khoản</h4>
                 <input
                   type="text"
                   name="taiKhoan"
                   id="taiKhoan"
-                  className="form-control input-sm w-100"
-                  placeholder="Tài khoản"
+                  className="input form-control input-sm w-100"
+                  placeholder="Tên đăng nhập"
                   onChange={frm.handleChange}
                 />
                 {frm.errors.taiKhoan ? (
@@ -88,14 +88,14 @@ export default function Login({}: Props) {
                 )}
               </div>
             </div>
-            <div className="form-group col-md-10 mb-4">
+            <div className="form-group  mb-4">
               <div className="input-group d-flex flex-column">
-                <h2>Mật khẩu</h2>
+                <h4>Mật khẩu</h4>
                 <input
                   type={passwordType}
                   name="matKhau"
-                  className="form-control input-sm w-100"
-                  placeholder="Password"
+                  className="input form-control input-sm w-100"
+                  placeholder="Mật khẩu"
                   onChange={frm.handleChange}
                   onInput={handlePasswordChange}
                   value={passwordInput}
@@ -116,16 +116,19 @@ export default function Login({}: Props) {
               </button>
             </div>
 
-            <div className="d-flex justify-content-between w-100 mb-5  mt-5">
+            <div className="sigin">
               <div className="submit">
-                <button type="submit" className="btn">
-                  Đăng Nhập
+                <button type="submit" className="btn-login">
+                  ĐĂNG NHẬP
                 </button>
               </div>
-              <div className="signUp">
+              <div className="signUp d-flex">
+                
+                  <span>Bạn chưa có tài khoản?</span>
+                
                 <NavLink to="/register">
                   <button type="button" className="btn">
-                    Đăng ký
+                    Đăng ký mới
                   </button>
                 </NavLink>
               </div>

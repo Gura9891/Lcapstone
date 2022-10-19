@@ -89,26 +89,29 @@ export default function Register({}: Props) {
   });
 
   return (
-    <div className="d-flex ">
-      <div className="col-6">
-        <img src={image} alt="..." className="w-100" height={1000} />
+    <div className="register">
+      <div className="container title">
+        <h1>CyberSoft Elearning</h1>
       </div>
-      <section className="register col-6">
-        <div className="contain">
-          <h2 className="title">ĐĂNG KÝ</h2>
-          <hr />
+      {/* <div className="col-6">
+        <img src={image} alt="..." className="w-100" height={1000} />
+      </div> */}
+      <section className="container register-content col-6">
+        <div className="container content">
+          <h1 className="title">ĐĂNG KÝ</h1>
+          {/* <hr /> */}
           <form
-            className="form d-flex flex-wrap justify-content-between"
+            className="form"
             onSubmit={frm.handleSubmit}
           >
-            <div className="form-group col-md-10 mb-4">
+            <div className="form-group  mb-4">
               <div className="input-group d-flex flex-column">
-                <h2>Tài khoản</h2>
+                <h4>Tài khoản</h4>
                 <input
                   type="text"
                   name="taiKhoan"
                   id="taiKhoan"
-                  className="form-control input-sm w-100"
+                  className="input form-control input-sm w-100"
                   placeholder="Tài khoản"
                   onChange={frm.handleChange}
                   onBlur={frm.handleBlur}
@@ -120,13 +123,13 @@ export default function Register({}: Props) {
                 )}
               </div>
             </div>
-            <div className="form-group col-md-10 mb-4">
+            <div className="form-group  mb-4">
               <div className="input-group d-flex flex-column">
-                <h2>Mật khẩu</h2>
+                <h4>Mật khẩu</h4>
                 <input
                   type={passwordType}
                   name="matKhau"
-                  className="form-control input-sm w-100"
+                  className="input form-control input-sm w-100"
                   placeholder="Password"
                   onChange={frm.handleChange}
                   onBlur={frm.handleBlur}
@@ -148,13 +151,13 @@ export default function Register({}: Props) {
                 )}
               </button>
             </div>
-            <div className="form-group col-md-10 mb-4">
+            <div className="form-group  mb-4">
               <div className="input-group d-flex flex-column">
-                <h2>Nhập lại mật khẩu</h2>
+                <h4>Nhập lại mật khẩu</h4>
                 <input
                   type={passwordReType}
                   name="passConfirm"
-                  className="form-control input-sm w-100"
+                  className="input form-control input-sm w-100"
                   placeholder="Password Confirm"
                   onChange={frm.handleChange}
                   onBlur={frm.handleBlur}
@@ -174,14 +177,14 @@ export default function Register({}: Props) {
               </button>
             </div>
 
-            <div className="form-group col-md-10 mb-4">
+            <div className="form-group  mb-4">
               <div className="input-group d-flex flex-column">
-                <h2>Họ tên</h2>
+                <h4>Họ tên</h4>
                 <input
                   type="text"
                   name="hoTen"
                   id="hoTen"
-                  className="form-control input-sm w-100"
+                  className="input form-control input-sm w-100"
                   placeholder="Name"
                   onChange={frm.handleChange}
                   onBlur={frm.handleBlur}
@@ -190,14 +193,14 @@ export default function Register({}: Props) {
                 <span className="text-danger">{frm.errors.hoTen} </span>
               </div>
             </div>
-            <div className="form-group col-md-10 mb-4">
+            <div className="form-group  mb-4">
               <div className="input-group d-flex flex-column">
-                <h2>Email</h2>
+                <h4>Email</h4>
                 <input
                   type="email"
                   name="email"
                   id="email"
-                  className="form-control input-sm w-100"
+                  className="input form-control input-sm w-100"
                   placeholder="Email"
                   onChange={frm.handleChange}
                   onBlur={frm.handleBlur}
@@ -210,14 +213,14 @@ export default function Register({}: Props) {
               </div>
             </div>
 
-            <div className="form-group col-md-10 mb-4">
+            <div className="form-group mb-4">
               <div className="input-group d-flex flex-column">
-                <h2>Số điện thoại</h2>
+                <h4>Số điện thoại</h4>
                 <input
                   type="text"
                   name="soDT"
                   id="soDT"
-                  className="form-control input-sm w-100"
+                  className="input form-control input-sm w-100"
                   placeholder="Phone"
                   onChange={frm.handleChange}
                   onBlur={frm.handleBlur}
@@ -226,14 +229,15 @@ export default function Register({}: Props) {
               </div>
             </div>
 
-            <div className="d-flex justify-content-between w-100 mb-5  mt-5">
+            <div className="register-button">
               <div className="submit">
-                <button type="submit" className="btn">
+                <button type="submit" className="btn-register">
                   Đăng ký
                 </button>
               </div>
               <div className="signIn">
-                <NavLink to="/dangnhap">
+              <span>Bạn chưa có tài khoản?</span>
+                <NavLink to="/login">
                   <button type="button" className="btn">
                     Đăng nhập
                   </button>

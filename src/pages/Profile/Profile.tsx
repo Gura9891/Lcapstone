@@ -155,7 +155,7 @@ export default function Profile({}: Props) {
           </button>
           <button
             className="nav-link"
-            id="v-pills-course-tab"
+            id="v-pills-course-tab" 
             data-bs-toggle="pill"
             data-bs-target="#v-pills-course"
             type="button"

@@ -1,0 +1,62 @@
+.login{
+    background-image: url(../../img/bg-01.jpg);
+    background-size: cover;
+    height: 900px;
+    .login-content{
+        h1{
+            padding-top: 30px;
+        }
+    width: 680px;
+    background: #fff;
+    border-radius: 10px;
+    position: relative;
+    }
+    .content{
+        align: center;
+    }
+}
+.title{
+    h1{
+        padding-top: 50px;
+        color: white;
+        font-weight: 700;
+    }
+    text-align: center;
+    padding-bottom: 30px;
+}
+.input{
+        border-radius: 10px !important;
+        width: 500px;
+        -webkit-border-radius: 10px !important;
+        -moz-border-radius: 10px !important;
+        -ms-border-radius: 10px !important;
+        -o-border-radius: 10px !important;
+}
+
+.sigin{
+    .btn-login{
+        background-color: #38aae6  ;
+        border: none;
+        border-radius: 10px;
+        height: 50px;
+        width: 500px;
+        font-weight: 700;
+        color: #fff;
+    }
+    text-align: center;
+    .signUp{
+        .btn{
+            margin-top: -6px ;
+            border: none;
+            background-color: none;
+        }
+        text-align: center;
+        margin-left: 120px;
+        margin-top: 30px;
+    }
+}
+.form{
+    margin-left: 70px !important;
+    width: 500px;
+    
+}
