@@ -17,6 +17,7 @@ import CoursesList from "./pages/CoursesList/CoursesList";
 import Register from "./pages/Register/register";
 import Login from "./pages/LoginPage/Login";
 import Profile from "./pages/Profile/Profile";
+import Search from "./pages/Search/Search";
 
 export const history = createBrowserHistory({ window });
 
@@ -35,6 +36,9 @@ root.render(
    
           <Route path="course">
             <Route path=":maDanhMuc" element={<CoursesList />}></Route>
+          </Route>
+          <Route path="search">
+            <Route path=":tenKhoaHoc" element={<Search />}></Route>
           </Route>
        <Route path="profile" element={<Profile/>}></Route>
         </Route>

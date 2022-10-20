@@ -1,18 +1,21 @@
 import useSelection from "antd/lib/table/hooks/useSelection";
-import React, { useEffect } from "react";
+import { values } from "lodash";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate, useSearchParams } from "react-router-dom";
+import { history } from "../..";
 import Login from "../../pages/LoginPage/Login";
 import { AppDispatch, RootState } from "../../redux/configStore";
 import { getProductListApi, ProductModel, DanhMuc } from "../../redux/reducers/productProducer";
+import { http } from "../../util/setting";
+
 
 type Props = {};
 
 export default function Header({ }: Props) {
 
-
   const { arrProductList } = useSelector((state: RootState) => state.productProducer);
-  const {userLogin} = useSelector((state: RootState) => state.userReducer);
+  const { userLogin } = useSelector((state: RootState) => state.userReducer);
   const dispatch: AppDispatch = useDispatch();
   console.log(userLogin);
   const renderLoginNavItem = () => {
@@ -21,7 +24,7 @@ export default function Header({ }: Props) {
       return <NavLink to="/login">Login</NavLink>;
     }
     return (
-      <NavLink to="/profile" style={{textDecoration:'none'}} >
+      <NavLink to="/profile" style={{ textDecoration: 'none' }} >
         <i className="fa-solid fa-user"></i> {userLogin.hoTen}
       </NavLink>
     );
@@ -34,13 +37,56 @@ export default function Header({ }: Props) {
 
   const renderDropdown = () => {
     return arrProductList.map((prod: DanhMuc, index: number) => {
-      
+
       return <li key={index}>
         <NavLink className="dropdown-item" to={`/course/${prod.maDanhMuc}`}>{prod.tenDanhMuc}</NavLink>
       </li>
     })
   }
 
+  // --------
+
+  let tenKhoaHocRef = useRef("")
+  let [searchParams, setSearchParams] = useSearchParams()
+  let [arrProduct, setArrProduct] = useState([])
+  let navigate = useNavigate()
+  const getProductByTenKhoaHoc = async () => {
+      try {
+          let tenKhoaHoc = searchParams.get("tenKhoaHoc")
+          if (tenKhoaHoc?.trim() !== "" && tenKhoaHoc !== null) {
+              let result = await http.get("/QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=" + tenKhoaHoc)
+              console.log(result.data);
+              setArrProduct(result.data);
+
+          } else {
+              setArrProduct([])
+          }
+      }
+      catch (err) {
+          console.log({ err });
+      }
+  }
+
+  useEffect(() => {
+      getProductByTenKhoaHoc()
+  }, [tenKhoaHocRef.current])
+
+  const handleChange = (e: any) => {
+      tenKhoaHocRef.current = e.target.value;
+      
+  }
+  const handleSubmit = (e: any) => {
+      e.preventDefault();
+      setSearchParams({ tenKhoaHoc: tenKhoaHocRef.current });
+  };
+  const renderProductByTenKhoaHoc = () => {
+      return arrProduct.map((prod: ProductModel, index: number) => {
+          return <div key={index}>
+            <button className="btn btn-outline-success" type="submit" onClick={() => { navigate(`/search/${prod.tenKhoaHoc}`)}} >Search</button>
+          </div>
+      })
+  }
+  // -------
 
 
 
@@ -122,13 +168,14 @@ export default function Header({ }: Props) {
 
                 </ul>
               </li>
-              <li className="nav-link" style={{color:'black'}}>
+              <li className="nav-link" style={{ color: 'black' }}>
                 {renderLoginNavItem()}
               </li>
             </ul>
-            <form className="d-flex">
-              <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-              <button className="btn btn-outline-success" type="submit">Search</button>
+            <form className="d-flex" onSubmit={handleSubmit}>
+              <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" onChange={handleChange}/>
+              {/* <button className="btn btn-outline-success" type="submit" >Search</button> */}
+              {renderProductByTenKhoaHoc()}
             </form>
           </div>
         </div>
