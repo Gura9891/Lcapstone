@@ -1,46 +1,55 @@
-.register{
-    background-image: url(../../img/bg-01.jpg);
-    background-size: cover;
-    height: 1200px;
-    .register-content{
-        h1{
-            padding-top: 30px;
-        }
+.register {
+  background-image: url(../../img/bg-01.jpg);
+  background-size: cover;
+  height: 1200px;
+  .register-content {
+    h1 {
+      padding-top: 30px;
+    }
     width: 680px;
     background: #fff;
     border-radius: 10px;
     position: relative;
-    }
-    .content{
-        align: center;
-    }
+  }
+  .content {
+    align: center;
+  }
 }
-.input{
-    border-radius: 10px !important;
-    -webkit-border-radius: 10px !important;
-    -moz-border-radius: 10px !important;
-    -ms-border-radius: 10px !important;
-    -o-border-radius: 10px !important;
+.input {
+  border-radius: 10px !important;
+  -webkit-border-radius: 10px !important;
+  -moz-border-radius: 10px !important;
+  -ms-border-radius: 10px !important;
+  -o-border-radius: 10px !important;
 }
-.register-button{
-    .btn-register{
-        background-color: #38aae6  ;
-        border: none;
-        border-radius: 10px;
-        height: 50px;
-        width: 500px;
-        font-weight: 700;
-        color: #fff;
+.register-button {
+  .btn-register {
+    background-color: #38aae6;
+    border: none;
+    border-radius: 10px;
+    height: 50px;
+    width: 500px;
+    font-weight: 700;
+    color: #fff;
+  }
+  text-align: center;
+  .signIn {
+    .btn {
+      margin-top: -6px;
+      border: none;
+      background-color: none;
     }
     text-align: center;
-    .signIn{
-        .btn{
-            margin-top: -6px ;
-            border: none;
-            background-color: none;
-        }
-        text-align: center;
-        // margin-left: 120px;
-        margin-top: 30px;
-    }
+    // margin-left: 120px;
+    margin-top: 30px;
+  }
+}
+.form-group {
+  position: relative;
+  .icon {
+    position: absolute;
+    top: 41px;
+    right: 11px;
+    border: none;
+  }
 }
