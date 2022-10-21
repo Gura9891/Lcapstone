@@ -134,204 +134,225 @@ export default function Profile({}: Props) {
 
   return (
     <div className="update">
-      <div className="container order d-flex align-items-start flex-wrap justify-content-around ">
-        <div
-          className="nav flex-row nav-pills me-3 col-10"
-          id="v-pills-tab"
-          role="tablist"
-          aria-orientation="vertical"
-        >
-          <button
-            className="nav-link active "
-            id="v-pills-profile-tab"
-            data-bs-toggle="pill"
-            data-bs-target="#v-pills-profile"
-            type="button"
-            role="tab"
-            aria-controls="v-pills-profile"
-            aria-selected="true"
-          >
-            Thông tin cá nhân
-          </button>
-          <button
-            className="nav-link"
-            id="v-pills-course-tab" 
-            data-bs-toggle="pill"
-            data-bs-target="#v-pills-course"
-            type="button"
-            role="tab"
-            aria-controls="v-pills-course"
-            aria-selected="false"
-          >
-            Khoá học của tôi
-          </button>
-        </div>
-        <div
-          className="tab-content col-10 border border-dark border-2"
-          id="v-pills-tabContent"
-        >
+      <div className="order  align-items-start flex-wrap justify-content-around ">
+        <div className="nav-title">
+          <h3 className="container " style={{ color: "white" }}>
+            Học viên: {userLogin.hoTen}
+          </h3>
           <div
-            className="tab-pane fade show active"
-            id="v-pills-profile"
-            role="tabpanel"
-            aria-labelledby="v-pills-profile-tab"
+            className="container nav flex-row nav-pills"
+            id="v-pills-tab"
+            role="tablist"
+            aria-orientation="vertical"
           >
-            <div className="contain d-flex h-100 w-100 ">
-              <form
-                className="form d-flex flex-wrap justify-content-between"
-                onSubmit={frm.handleSubmit}
-              >
-                <div className="form-group col-md-10 mb-4 me-5">
-                  <div className="input-group d-flex flex-column">
-                    <h2>Email</h2>
-                    <input
-                      type="email"
-                      name="email"
-                      id="email"
-                      className="form-control input-sm w-100"
-                      onChange={frm.handleChange}
-                      onInput={handleChangeInput}
-                      value={update.email}
-                    />
-                    {frm.errors.email ? (
-                      <span className="text-danger">{frm.errors.email} </span>
-                    ) : (
-                      ""
-                    )}
-                  </div>
-                </div>
-                <div className="form-group col-md-10 mb-4 me-5">
-                  <div className="input-group d-flex flex-column">
-                    <h2>Tài khoản</h2>
-                    <Popover content={content} trigger="hover" className="m-0">
+            <button
+              className="nav-link active "
+              id="v-pills-profile-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#v-pills-profile"
+              type="button"
+              role="tab"
+              aria-controls="v-pills-profile"
+              aria-selected="true"
+            >
+              Hồ sơ cá nhân
+            </button>
+            <button
+              className="nav-link"
+              id="v-pills-course-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#v-pills-course"
+              type="button"
+              role="tab"
+              aria-controls="v-pills-course"
+              aria-selected="false"
+            >
+              Khoá học của tôi
+            </button>
+          </div>
+        </div>
+        <div className="content-right">
+          <div
+            className="tab-content border border-dark border-2"
+            id="v-pills-tabContent"
+          >
+            <div
+              className="container tab-pane fade show active"
+              id="v-pills-profile"
+              role="tabpanel"
+              aria-labelledby="v-pills-profile-tab"
+            >
+              <div className="panel-header">
+                <p>
+                  <i className="fa-solid fa-user"></i>
+                  <span>Thông tin cá nhân</span>
+                </p>
+              </div>
+              <div className="contain h-100 w-100 ">
+                <form
+                  className="form  flex-wrap justify-content-between"
+                  onSubmit={frm.handleSubmit}
+                >
+                  <div className="form-group  mb-4">
+                    <div className="input-group d-flex flex-column">
+                      <h4>Email</h4>
                       <input
-                        type="text"
-                        name="taiKhoan"
-                        id="taiKhoan"
+                        type="email"
+                        name="email"
+                        id="email"
                         className="form-control input-sm w-100"
-                        aria-label="Disabled input example"
-                        disabled
                         onChange={frm.handleChange}
                         onInput={handleChangeInput}
-                        value={update.taiKhoan}
+                        value={update.email}
                       />
-                      <Button></Button>
-                    </Popover>
+                      {frm.errors.email ? (
+                        <span className="text-danger">{frm.errors.email} </span>
+                      ) : (
+                        ""
+                      )}
+                    </div>
                   </div>
-                </div>
-                <div className="form-group col-md-10 mb-4 me-5">
-                  <div className="input-group d-flex flex-column">
-                    <h2>Họ tên</h2>
-                    <input
-                      data-type="hoTen"
-                      type="text"
-                      name="hoTen"
-                      id="hoTen"
-                      className="form-control input-sm w-100"
-                      onChange={frm.handleChange}
-                      value={update.hoTen}
-                      onInput={handleChangeInput}
-                    />
+                  <div className="form-group  mb-4">
+                    <div className="input-group d-flex flex-column">
+                      <h4>Tài khoản</h4>
+                      <Popover trigger="hover" className="m-0">
+                        <input
+                          type="text"
+                          name="taiKhoan"
+                          id="taiKhoan"
+                          className="form-control input-sm w-100"
+                          aria-label="Disabled input example"
+                          disabled
+                          onChange={frm.handleChange}
+                          onInput={handleChangeInput}
+                          value={update.taiKhoan}
+                        />
+                      </Popover>
+                    </div>
+                  </div>
+                  <div className="form-group mb-4 ">
+                    <div className="input-group d-flex flex-column">
+                      <h4>Họ tên</h4>
+                      <input
+                        data-type="hoTen"
+                        type="text"
+                        name="hoTen"
+                        id="hoTen"
+                        className="form-control input-sm w-100"
+                        onChange={frm.handleChange}
+                        value={update.hoTen}
+                        onInput={handleChangeInput}
+                      />
 
-                    <span className="text-danger">{frm.errors.hoTen} </span>
+                      <span className="text-danger">{frm.errors.hoTen} </span>
+                    </div>
                   </div>
-                </div>
 
-                <div className="form-group col-md-10 mb-4 me-5">
-                  <div className="input-group d-flex flex-column">
-                    <h2>Số điện thoại</h2>
-                    <input
-                      data-type="phone"
-                      type="text"
-                      name="soDT"
-                      id="soDT"
-                      className="form-control input-sm w-100"
-                      value={update.soDT}
-                      onChange={frm.handleChange}
-                      onInput={handleChangeInput}
-                    />
-                    <span className="text-danger">{frm.errors.soDT} </span>
+                  <div className="form-group  mb-4">
+                    <div className="input-group d-flex flex-column">
+                      <h4>Số điện thoại</h4>
+                      <input
+                        data-type="phone"
+                        type="text"
+                        name="soDT"
+                        id="soDT"
+                        className="form-control input-sm w-100"
+                        value={update.soDT}
+                        onChange={frm.handleChange}
+                        onInput={handleChangeInput}
+                      />
+                      <span className="text-danger">{frm.errors.soDT} </span>
+                    </div>
                   </div>
-                </div>
-                <div className="form-group col-md-10 mb-4 me-5">
-                  <div className="input-group d-flex flex-column">
-                    <h2>Mật khẩu</h2>
-                    <input
-                      data-type="password"
-                      type={passwordType}
-                      name="matKhau"
-                      id="matKhau"
-                      className="form-control input-sm w-100"
-                      value={update.matKhau}
-                      onChange={frm.handleChange}
-                      onInput={handleChangeInput}
-                    />
+                  <div className="form-group  mb-4">
+                    <div className="input-group d-flex flex-column">
+                      <h4>Mật khẩu</h4>
+                      <input
+                        data-type="password"
+                        type={passwordType}
+                        name="matKhau"
+                        id="matKhau"
+                        className="form-control input-sm w-100"
+                        value={update.matKhau}
+                        onChange={frm.handleChange}
+                        onInput={handleChangeInput}
+                      />
 
-                    <span className="text-danger">{frm.errors.matKhau} </span>
-                  </div>
-                  <button type="button" onClick={togglePassword}>
-                    {passwordType === "password" ? (
-                      <i className="bi bi-eye-slash"></i>
-                    ) : (
-                      <i className="bi bi-eye"></i>
-                    )}
-                  </button>
-                </div>
-                <div className="d-flex justify-content-between w-100 flex-row-reverse info">
-                  <div className="submit">
-                    <button type="submit" className="btn">
-                      Cập nhật
+                      <span className="text-danger">{frm.errors.matKhau} </span>
+                    </div>
+                    <button
+                      className="icon"
+                      type="button"
+                      onClick={togglePassword}
+                    >
+                      {passwordType === "password" ? (
+                        <i className="fa-regular fa-eye-slash"></i>
+                      ) : (
+                        <i className="fa-regular fa-eye"></i>
+                      )}
                     </button>
                   </div>
-                </div>
-              </form>
-            </div>
-          </div>
-
-          <div
-            className="tab-pane fade"
-            id="v-pills-course"
-            role="tabpanel"
-            aria-labelledby="v-pills-course-tab"
-          >
-            <div className="mt-2">
-              <div className="title d-flex justify-content-between">
-                <h2>Các khoá học đã tham gia</h2>
-                <div>
-                  <Space direction="vertical">
-                    <Search
-                      placeholder="Nhập khoá học cần tìm"
-                      onSearch={onSearch}
-                      style={{ width: 400 }}
-                    />
-                  </Space>
-                </div>
-              </div>
-
-              <hr />
-              {userLogin?.chiTietKhoaHocGhiDanh?.map((course:ChiTietKhoaHocGhiDanh,index:number)=>{
-                return <div className="m-4" key={index}>
-                <div className="coursesRegistered d-flex border-top pt-2 bg-light">
-                  <div className="imageCourse col-2 me-4">
-                    <img src={course.hinhAnh} alt={course.tenKhoaHoc} className="w-100" />
-                  </div>
-                  <div className="detailCourse col-8 d-flex flex-column">
-                    <h3>{course.tenKhoaHoc}</h3>
-                    <p>
-                      {course.moTa}
-                    </p>
-                  </div>
-                  <div className="rate col-2 d-flex flex-column align-items-center">
-                    <div>
-                      <Rate value={course.danhGia} />
+                  <div className="d-flex justify-content-between w-100 flex-row-reverse info">
+                    <div className="submit">
+                      <button type="submit" className="btn">
+                        Cập nhật
+                      </button>
                     </div>
-                    <span>{course.luotXem}</span>
-                    <button className="btn"> Huỷ</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <div
+              className="container tab-pane bg-white"
+              id="v-pills-course"
+              role="tabpanel"
+              aria-labelledby="v-pills-course-tab"
+            >
+              <div className="mt-2">
+                <div className="title d-flex justify-content-between">
+                  <h2>Các khoá học đã tham gia</h2>
+                  <div>
+                    <Space direction="vertical">
+                      <Search
+                        placeholder="Nhập khoá học cần tìm"
+                        onSearch={onSearch}
+                        style={{ width: 400 }}
+                      />
+                    </Space>
                   </div>
                 </div>
-                </div>
-              })}
-              
+
+                <hr />
+                {userLogin?.chiTietKhoaHocGhiDanh?.map(
+                  (course: ChiTietKhoaHocGhiDanh, index: number) => {
+                    return (
+                      <div className="m-4" key={index}>
+                        <div className="coursesRegistered d-flex border-top pt-2 bg-light">
+                          <div className="imageCourse col-2 me-4">
+                            <img
+                              src={course.hinhAnh}
+                              alt={course.tenKhoaHoc}
+                              className="w-100"
+                            />
+                          </div>
+                          <div className="detailCourse col-8 d-flex flex-column">
+                            <h3>{course.tenKhoaHoc}</h3>
+                            <p>{course.moTa}</p>
+                          </div>
+                          <div className="rate col-2 d-flex flex-column align-items-center">
+                            <div>
+                              <Rate value={course.danhGia} />
+                            </div>
+                            <span>{course.luotXem}</span>
+                            <button className="btn"> Huỷ</button>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  }
+                )}
+              </div>
             </div>
           </div>
         </div>
