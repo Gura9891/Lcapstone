@@ -20,16 +20,18 @@ export default function Header({ }: Props) {
   const dispatch: AppDispatch = useDispatch();
   console.log(userLogin);
   const renderLoginNavItem = () => {
-    if (userLogin === null) {
+    if (Object.values(userLogin).length === 0) { 
       console.log(123);
       return <NavLink to="/login">Login</NavLink>;
+    } else {
+      return (
+        <NavLink to="/profile" style={{ textDecoration: "none" }}>
+          <i className="fa-solid fa-user"></i> {userLogin.hoTen}
+        </NavLink>
+      );
     }
-    return (
-      <NavLink to="/profile" style={{ textDecoration: 'none' }} >
-        <i className="fa-solid fa-user"></i> {userLogin.hoTen}
-      </NavLink>
-    );
   };
+  
 
   useEffect(() => {
     const actionCoursesApi = getProductListApi();
@@ -91,7 +93,7 @@ export default function Header({ }: Props) {
 
 
   return (
-   <div className="container">
+   <div className="container" style={{padding:0}}>
  <div className="header">
 
       <nav className="navbar navbar-expand-lg navbar-light">
@@ -119,9 +121,7 @@ export default function Header({ }: Props) {
 
                 </ul>
               </li>
-              <li className="nav-link" style={{ color: 'black' }}>
-                {renderLoginNavItem()}
-              </li>
+              
             </ul>
             <form className="d-flex" onSubmit={handleSubmit}>
               <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" onChange={handleChange}/>
@@ -132,12 +132,12 @@ export default function Header({ }: Props) {
             <button className="signin" onClick={()=> {
               navigate('/login')
             }} >
-                    Đăng nhập
+                    {renderLoginNavItem()}
                   </button>
                   <button className="signup ms-2" onClick={()=> {
                     navigate('/register')
                   }}>
-                    Đăng ký
+                    Register
                   </button>
           </div>
         </div>

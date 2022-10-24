@@ -1,7 +1,7 @@
 .login{
     background-image: url(../../img/bg-01.jpg);
     background-size: cover;
-    height: 900px;
+    height: 700px;
     .login-content{
         h1{
             padding-top: 30px;
@@ -58,5 +58,14 @@
 .form{
     margin-left: 70px !important;
     width: 500px;
+    .form-group{
+        position: relative;
+        .icon{
+            position:absolute;
+            top:50px;
+            right: 5px;
+            border: none;
+        }
+    }
     
 }

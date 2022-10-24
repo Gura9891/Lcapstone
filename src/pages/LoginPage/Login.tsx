@@ -58,7 +58,7 @@ export default function Login({}: Props) {
   }, [userToken]);
 
   return (
-    <div className="login">
+    <div className="container login">
       <div className="container title">
         <h1>CyberSoft Elearning</h1>
       </div>
@@ -104,14 +104,15 @@ export default function Login({}: Props) {
                 <span className="text-danger">{frm.errors.matKhau} </span>
               </div>
               <button
+                className="icon"
                 type="button"
                 style={{ background: "transparent" }}
                 onClick={togglePassword}
               >
                 {passwordType === "password" ? (
-                  <i className="fa-solid fa-exclamation-slash"></i>
+                  <i className="fa-regular fa-eye-slash"></i>
                 ) : (
-                  <i className="fa-solid fa-exclamation"></i>
+                  <i className="fa-regular fa-eye"></i>
                 )}
               </button>
             </div>

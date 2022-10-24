@@ -89,7 +89,7 @@ export default function Register({}: Props) {
   });
 
   return (
-    <div className="register">
+    <div className="container register">
       <div className="container title">
         <h1>CyberSoft Elearning</h1>
       </div>
@@ -130,7 +130,7 @@ export default function Register({}: Props) {
                   type={passwordType}
                   name="matKhau"
                   className="input form-control input-sm w-100"
-                  placeholder="Password"
+                  placeholder="Mật khẩu"
                   onChange={frm.handleChange}
                   onBlur={frm.handleBlur}
                   onInput={handlePasswordChange}
@@ -140,14 +140,15 @@ export default function Register({}: Props) {
                 <span className="text-danger">{frm.errors.matKhau} </span>
               </div>
               <button
+              className="icon"
                 type="button"
                 style={{ background: "transparent" }}
                 onClick={togglePassword}
               >
                 {passwordType === "password" ? (
-                  <i className="fa-solid fa-exclamation"></i>
+                  <i className="fa-regular fa-eye-slash"></i>
                 ) : (
-                  <i className="fa-solid fa-exclamation"></i>
+                  <i className="fa-regular fa-eye"></i>
                 )}
               </button>
             </div>
@@ -165,14 +166,15 @@ export default function Register({}: Props) {
                 <span className="text-danger">{frm.errors.passConfirm}</span>
               </div>
               <button
+              className="icon"
                 type="button"
                 style={{ background: "transparent" }}
                 onClick={toggleRePassword}
               >
                 {passwordReType === "password" ? (
-                  <i className="fa-solid fa-exclamation"></i>
+                  <i className="fa-regular fa-eye-slash"></i>
                 ) : (
-                  <i className="fa-solid fa-exclamation"></i>
+                  <i className="fa-regular fa-eye"></i>
                 )}
               </button>
             </div>
