@@ -52,15 +52,13 @@ const productReducer = createSlice({
       state.arrProductList = action.payload;
     },
     getAllCourseListAction: (state, action: PayloadAction<ProductModel[]>) => {
-      state.coursesList = action.payload;
+      state.coursesList.push(action.payload)
     },
     getSearchProductAction: (state, action: PayloadAction<ProductModel[]>) => {
       state.searchProduct = action.payload;
     },
 
-    getDetailItemAction: (state, action: PayloadAction<ProductModel[]>) => {
-      state.coursesList.push(action.payload)
-    },
+
   },
 });
 
@@ -69,7 +67,7 @@ export const {
   getAllProductListAction,
   getAllCourseListAction,
   getSearchProductAction,
-  getDetailItemAction
+  
 } = productReducer.actions;
 
 export default productReducer.reducer;

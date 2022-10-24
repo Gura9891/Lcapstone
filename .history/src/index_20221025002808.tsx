@@ -20,7 +20,7 @@ import Login from "./pages/LoginPage/Login";
 import Profile from "./pages/Profile/Profile";
 import Search from "./pages/Search/Search";
 import Detail from "./pages/Detail/Detail";
-
+import DetailProduct from "./Component/Product/DetailProduct";
 
 export const history = createBrowserHistory({ window });
 

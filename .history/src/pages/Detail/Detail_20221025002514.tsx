@@ -11,7 +11,7 @@ import {
 
 type Props = {};
 
-export default function Detail({}: Props) {
+export default function CoursesList({}: Props) {
   const { coursesList } = useSelector(
     (state: RootState) => state.productProducer
   );
@@ -21,10 +21,11 @@ export default function Detail({}: Props) {
   const params = useParams();
 
   useEffect(() => {
-    let { maKhoaHoc } = params;
-    const actionApi = getDetailApi(maKhoaHoc);
+    let { maDanhMuc } = params;
+
+    const actionApi = getDetailApi(maDanhMuc);
     dispatch(actionApi);
-  }, [params.maKhoaHoc]);
+  }, [params.maDanhMuc]);
 
   const renderCourseList = () => {
     return coursesList.map((prod: ProductModel, index: number) => {

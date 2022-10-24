@@ -15,13 +15,14 @@ export default function Detail({}: Props) {
   const { coursesList } = useSelector(
     (state: RootState) => state.productProducer
   );
-  console.log('detailist',coursesList);
+  console.log(coursesList);
 
   const dispatch: AppDispatch = useDispatch();
   const params = useParams();
 
   useEffect(() => {
     let { maKhoaHoc } = params;
+
     const actionApi = getDetailApi(maKhoaHoc);
     dispatch(actionApi);
   }, [params.maKhoaHoc]);

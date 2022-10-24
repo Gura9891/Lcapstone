@@ -22,6 +22,7 @@ export default function Detail({}: Props) {
 
   useEffect(() => {
     let { maKhoaHoc } = params;
+
     const actionApi = getDetailApi(maKhoaHoc);
     dispatch(actionApi);
   }, [params.maKhoaHoc]);

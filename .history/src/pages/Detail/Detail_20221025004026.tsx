@@ -22,12 +22,13 @@ export default function Detail({}: Props) {
 
   useEffect(() => {
     let { maKhoaHoc } = params;
+
     const actionApi = getDetailApi(maKhoaHoc);
     dispatch(actionApi);
   }, [params.maKhoaHoc]);
 
   const renderCourseList = () => {
-    return coursesList.map((prod: ProductModel, index: number) => {
+    return coursesList.map?((prod: ProductModel, index: number) => {
       return (
         <div className="col-4" key={index}>
           <DetailProduct detailProduct={prod} />

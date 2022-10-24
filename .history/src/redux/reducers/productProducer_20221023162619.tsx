@@ -56,11 +56,7 @@ const productReducer = createSlice({
     },
     getSearchProductAction: (state, action: PayloadAction<ProductModel[]>) => {
       state.searchProduct = action.payload;
-    },
-
-    getDetailItemAction: (state, action: PayloadAction<ProductModel[]>) => {
-      state.coursesList.push(action.payload)
-    },
+    }
   },
 });
 
@@ -68,8 +64,7 @@ export const {
   getAllProductAction,
   getAllProductListAction,
   getAllCourseListAction,
-  getSearchProductAction,
-  getDetailItemAction
+  getSearchProductAction
 } = productReducer.actions;
 
 export default productReducer.reducer;
@@ -137,20 +132,3 @@ export const getSearchProductApi = (tenKhoaHoc:string | undefined) => {
     }
   }
 }
-
-
-export const getDetailApi = (maKhoaHoc: any ) => {
-  return async (dispatch: AppDispatch) => {
-    try {
-      const result = await http.get(
-        `https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/LayThongTinKhoaHoc?maKhoaHoc=${maKhoaHoc}`
-      );
-      console.log(result.data);
-      let listCourse: ProductModel[] = result.data;
-      const action = getDetailItemAction(listCourse);
-      dispatch(action);
-    } catch (err) {
-      console.log({ err });
-    }
-  };
-};

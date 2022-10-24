@@ -20,7 +20,7 @@ import Login from "./pages/LoginPage/Login";
 import Profile from "./pages/Profile/Profile";
 import Search from "./pages/Search/Search";
 import Detail from "./pages/Detail/Detail";
-
+import DetailProduct from "./Component/Product/DetailProduct";
 
 export const history = createBrowserHistory({ window });
 
@@ -41,14 +41,14 @@ root.render(
             <Route path=":maDanhMuc" element={<CoursesList />}></Route>
        
           </Route>
-          <Route path="detail">
+          {/* <Route path="detail">
             <Route path=":maKhoaHoc" element={<Detail />}></Route>
-          </Route>
+          </Route> */}
           <Route path="search">
             <Route path=":tenKhoaHoc" element={<Search />}></Route>
           </Route>
           <Route path="profile" element={<Profile />}></Route>
-
+          <Route path="test" element={<DetailProduct />}></Route>
           
         </Route>
       </Routes>

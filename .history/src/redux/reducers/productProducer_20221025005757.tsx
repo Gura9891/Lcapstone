@@ -56,7 +56,7 @@ const productReducer = createSlice({
     },
     getSearchProductAction: (state, action: PayloadAction<ProductModel[]>) => {
       state.searchProduct = action.payload;
-    },
+    }
 
     getDetailItemAction: (state, action: PayloadAction<ProductModel[]>) => {
       state.coursesList.push(action.payload)

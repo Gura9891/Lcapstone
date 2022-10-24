@@ -5,7 +5,7 @@ import DetailProduct from "../../Component/Product/DetailProduct";
 import Product from "../../Component/Product/Product";
 import { AppDispatch, RootState } from "../../redux/configStore";
 import {
-  getDetailApi,
+  getCourseListApi,
   ProductModel,
 } from "../../redux/reducers/productProducer";
 
@@ -15,14 +15,15 @@ export default function Detail({}: Props) {
   const { coursesList } = useSelector(
     (state: RootState) => state.productProducer
   );
-  console.log('detailist',coursesList);
+  console.log(coursesList);
 
   const dispatch: AppDispatch = useDispatch();
   const params = useParams();
 
   useEffect(() => {
     let { maKhoaHoc } = params;
-    const actionApi = getDetailApi(maKhoaHoc);
+
+    const actionApi = getCourseListApi(maKhoaHoc);
     dispatch(actionApi);
   }, [params.maKhoaHoc]);
 
@@ -30,7 +31,7 @@ export default function Detail({}: Props) {
     return coursesList.map((prod: ProductModel, index: number) => {
       return (
         <div className="col-4" key={index}>
-          <DetailProduct detailProduct={prod} />
+          <DetailProduct product={prod} />
         </div>
       );
     });

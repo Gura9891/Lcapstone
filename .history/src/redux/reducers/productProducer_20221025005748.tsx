@@ -56,7 +56,7 @@ const productReducer = createSlice({
     },
     getSearchProductAction: (state, action: PayloadAction<ProductModel[]>) => {
       state.searchProduct = action.payload;
-    },
+    }
 
     getDetailItemAction: (state, action: PayloadAction<ProductModel[]>) => {
       state.coursesList.push(action.payload)
@@ -147,7 +147,7 @@ export const getDetailApi = (maKhoaHoc: any ) => {
       );
       console.log(result.data);
       let listCourse: ProductModel[] = result.data;
-      const action = getDetailItemAction(listCourse);
+      const action = getAllCourseListAction(listCourse);
       dispatch(action);
     } catch (err) {
       console.log({ err });

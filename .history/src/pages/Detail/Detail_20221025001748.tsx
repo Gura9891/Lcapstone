@@ -15,22 +15,23 @@ export default function Detail({}: Props) {
   const { coursesList } = useSelector(
     (state: RootState) => state.productProducer
   );
-  console.log('detailist',coursesList);
+  console.log(coursesList);
 
   const dispatch: AppDispatch = useDispatch();
   const params = useParams();
 
   useEffect(() => {
-    let { maKhoaHoc } = params;
-    const actionApi = getDetailApi(maKhoaHoc);
+    let { maDanhMuc } = params;
+
+    const actionApi = getDetailApi(maDanhMuc);
     dispatch(actionApi);
-  }, [params.maKhoaHoc]);
+  }, [params.maDanhMuc]);
 
   const renderCourseList = () => {
     return coursesList.map((prod: ProductModel, index: number) => {
       return (
         <div className="col-4" key={index}>
-          <DetailProduct detailProduct={prod} />
+          <DetailProduct product={prod} />
         </div>
       );
     });

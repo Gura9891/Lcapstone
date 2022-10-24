@@ -24,7 +24,7 @@ export default function Detail({}: Props) {
     let { maKhoaHoc } = params;
     const actionApi = getDetailApi(maKhoaHoc);
     dispatch(actionApi);
-  }, [params.maKhoaHoc]);
+  }, []);
 
   const renderCourseList = () => {
     return coursesList.map((prod: ProductModel, index: number) => {
