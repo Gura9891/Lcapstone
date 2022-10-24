@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import { store } from "./redux/configStore";
 import HomeTemplate from "./templates/HomeTemplate";
+import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 import "./assets/scss/style.scss";
 import Home from "./pages/HomePage/Home";
 import { createBrowserHistory } from "history";
@@ -17,6 +18,9 @@ import CoursesList from "./pages/CoursesList/CoursesList";
 import Register from "./pages/Register/register";
 import Login from "./pages/LoginPage/Login";
 import Profile from "./pages/Profile/Profile";
+import Search from "./pages/Search/Search";
+import ListDemo from "./pages/CoursesList/ListDemo";
+import Detail from "./pages/Detail/Detail";
 
 export const history = createBrowserHistory({ window });
 
@@ -35,8 +39,17 @@ root.render(
 
           <Route path="course">
             <Route path=":maDanhMuc" element={<CoursesList />}></Route>
+       
           </Route>
           <Route path="profile" element={<Profile />}></Route>
+          <Route path="detail">
+            <Route path=":maKhoaHoc" element={<Detail />}></Route>
+          </Route>
+          <Route path="search">
+            <Route path=":tenKhoaHoc" element={<Search />}></Route>
+          </Route>
+          <Route path="profile" element={<Profile />}></Route>
+          <Route path="test" element={<ListDemo />}></Route>
         </Route>
       </Routes>
     </HistoryRouter>

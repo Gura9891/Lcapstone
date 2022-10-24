@@ -38,6 +38,7 @@ const initialState: any = {
   arrProduct: [],
   arrProductList: [],
   coursesList: [],
+  searchProduct :[]
 };
 
 const productReducer = createSlice({
@@ -53,6 +54,9 @@ const productReducer = createSlice({
     getAllCourseListAction: (state, action: PayloadAction<ProductModel[]>) => {
       state.coursesList = action.payload;
     },
+    getSearchProductAction: (state, action: PayloadAction<ProductModel[]>) => {
+      state.searchProduct = action.payload;
+    }
   },
 });
 
@@ -60,6 +64,7 @@ export const {
   getAllProductAction,
   getAllProductListAction,
   getAllCourseListAction,
+  getSearchProductAction
 } = productReducer.actions;
 
 export default productReducer.reducer;
@@ -111,3 +116,19 @@ export const getCourseListApi = (maDanhMuc: any ) => {
     }
   };
 };
+
+export const getSearchProductApi = (tenKhoaHoc:string | undefined) => {
+  return async (dispatch : AppDispatch) => {
+    try{
+      const result = await http.get(`/QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=${tenKhoaHoc}`);
+      console.log(result.data);
+      let searchCourse : ProductModel[] = result.data;
+      const action = getSearchProductAction(searchCourse);
+      dispatch(action)
+    }
+    catch (err) {
+      console.log({err});
+      
+    }
+  }
+}
