@@ -19,8 +19,8 @@ import Register from "./pages/Register/register";
 import Login from "./pages/LoginPage/Login";
 import Profile from "./pages/Profile/Profile";
 import Search from "./pages/Search/Search";
-import ListDemo from "./pages/CoursesList/ListDemo";
 import Detail from "./pages/Detail/Detail";
+
 
 export const history = createBrowserHistory({ window });
 
@@ -49,7 +49,8 @@ root.render(
             <Route path=":tenKhoaHoc" element={<Search />}></Route>
           </Route>
           <Route path="profile" element={<Profile />}></Route>
-          <Route path="test" element={<ListDemo />}></Route>
+
+          
         </Route>
       </Routes>
     </HistoryRouter>

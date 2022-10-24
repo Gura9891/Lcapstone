@@ -14,7 +14,7 @@ export default function CoursesList({}: Props) {
   const { coursesList } = useSelector(
     (state: RootState) => state.productProducer
   );
-  console.log(coursesList);
+  console.log('coursesList',coursesList);
 
   const dispatch: AppDispatch = useDispatch();
   const params = useParams();
