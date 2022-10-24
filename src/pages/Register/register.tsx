@@ -146,7 +146,7 @@ export default function Register({}: Props) {
                 onClick={togglePassword}
               >
                 {passwordType === "password" ? (
-                  <i className="fa-regular fa-eye"></i>
+                  <i className="fa-regular fa-eye-slash"></i>
                 ) : (
                   <i className="fa-regular fa-eye"></i>
                 )}
@@ -172,7 +172,7 @@ export default function Register({}: Props) {
                 onClick={toggleRePassword}
               >
                 {passwordReType === "password" ? (
-                  <i className="fa-regular fa-eye"></i>
+                  <i className="fa-regular fa-eye-slash"></i>
                 ) : (
                   <i className="fa-regular fa-eye"></i>
                 )}

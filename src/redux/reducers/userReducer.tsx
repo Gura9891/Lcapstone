@@ -64,7 +64,7 @@ export interface stateRedux {
 }
 
 const initialState: any = {
-  userLogin: getStoreJson(USER_LOGIN) || {},
+  userLogin: {},
   userToken: "",
 };
 

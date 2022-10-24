@@ -111,10 +111,12 @@ export default function Profile({}: Props) {
   });
 
   useEffect(() => {
-    setUpdate(userLogin);
     dispatch(getProfileApi());
-  }, [userLogin]);
+  }, []);
 
+  useEffect(() => {
+    setUpdate(userLogin);
+  }, [userLogin]);
   const handleChangeInput = (e: any) => {
     let { id, value } = e.target;
 
@@ -122,12 +124,6 @@ export default function Profile({}: Props) {
     newValue[id] = value;
     setUpdate(newValue);
   };
-
-  const content = (
-    <div>
-      <p>Tài khoản không thể chỉnh sửa</p>
-    </div>
-  );
 
   const { Search } = Input;
   const onSearch = (value: string) => console.log(value);
@@ -203,7 +199,7 @@ export default function Profile({}: Props) {
                         className="form-control input-sm w-100"
                         onChange={frm.handleChange}
                         onInput={handleChangeInput}
-                        value={update.email}
+                        defaultValue={update.email}
                       />
                       {frm.errors.email ? (
                         <span className="text-danger">{frm.errors.email} </span>
@@ -240,7 +236,7 @@ export default function Profile({}: Props) {
                         id="hoTen"
                         className="form-control input-sm w-100"
                         onChange={frm.handleChange}
-                        value={update.hoTen}
+                        defaultValue={update.hoTen}
                         onInput={handleChangeInput}
                       />
 
@@ -257,11 +253,14 @@ export default function Profile({}: Props) {
                         name="soDT"
                         id="soDT"
                         className="form-control input-sm w-100"
-                        value={update.soDT}
+                        defaultValue={update.soDT}
                         onChange={frm.handleChange}
                         onInput={handleChangeInput}
                       />
-                      <span className="text-danger">{frm.errors.soDT} </span>
+                      <div className="text-danger position-absolute">
+                        {frm.errors.soDT ? `${frm.errors.soDT}` : ""}
+                      </div>
+                      {/* <span className="text-danger">{frm.errors.soDT} </span> */}
                     </div>
                   </div>
                   <div className="form-group  mb-4">
@@ -273,7 +272,7 @@ export default function Profile({}: Props) {
                         name="matKhau"
                         id="matKhau"
                         className="form-control input-sm w-100"
-                        value={update.matKhau}
+                        defaultValue={update.matKhau}
                         onChange={frm.handleChange}
                         onInput={handleChangeInput}
                       />
