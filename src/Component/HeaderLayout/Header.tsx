@@ -129,9 +129,7 @@ export default function Header({ }: Props) {
               {renderProductByTenKhoaHoc()}
             </form>
 
-            <button className="signin" onClick={()=> {
-              navigate('/login')
-            }} >
+            <button className="signin" >
                     {renderLoginNavItem()}
                   </button>
                   <button className="signup ms-2" onClick={()=> {
