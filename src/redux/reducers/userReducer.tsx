@@ -59,8 +59,8 @@ export interface ChiTietKhoaHocGhiDanh {
 }
 
 export interface stateRedux {
-  userLogin:Profile;
-  userToken:any;
+  userLogin: Profile;
+  userToken: any;
 }
 
 const initialState: any = {
@@ -81,7 +81,7 @@ const userReducer = createSlice({
   },
 });
 
-export const { getProfileAction,userCheck } = userReducer.actions;
+export const { getProfileAction, userCheck } = userReducer.actions;
 
 export default userReducer.reducer;
 
@@ -110,7 +110,10 @@ export const registerApi = (userRes: UserRegister) => {
 export const LoginApi = (userLogin: userLogin) => {
   return async (dispatch: AppDispatch) => {
     try {
-      const result:any = await http.post("/QuanLyNguoiDung/DangNhap", userLogin);
+      const result: any = await http.post(
+        "/QuanLyNguoiDung/DangNhap",
+        userLogin
+      );
       console.log(result);
       setCookie(ACCESS_TOKEN, result.data.accessToken, 30);
       setStore(ACCESS_TOKEN, result.data.accessToken);
@@ -140,18 +143,23 @@ export const updateProfileApi = (userUpdate: updateProfile) => {
   return async () => {
     try {
       const result = await http.put(
-        "/QuanLyNguoiDung/CapNhatThongTinNguoiDung", userUpdate
+        "/QuanLyNguoiDung/CapNhatThongTinNguoiDung",
+        userUpdate
       );
       const key = "updatable";
       const openMessage = () => {
         message.loading({ content: "Đang kiểm tra", key });
         setTimeout(() => {
-          message.success({ content: "Cập nhật thành công!", key, duration: 2 });
+          message.success({
+            content: "Cập nhật thành công!",
+            key,
+            duration: 2,
+          });
         }, 1000);
       };
       openMessage();
     } catch (err) {
-console.log(err);
+      console.log(err);
     }
   };
 };
