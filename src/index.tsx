@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import { store } from "./redux/configStore";
 import HomeTemplate from "./templates/HomeTemplate";
-import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
+import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
 import "./assets/scss/style.scss";
 import Home from "./pages/HomePage/Home";
 import { createBrowserHistory } from "history";
@@ -20,7 +20,12 @@ import Login from "./pages/LoginPage/Login";
 import Profile from "./pages/Profile/Profile";
 import Search from "./pages/Search/Search";
 import Detail from "./pages/Detail/Detail";
+import AdminTemplate from "./templates/AdminTemplate";
+import HomeAdmin from "./Component/Admin/Home/HomeAdmin";
+import CourseAdmin from "./Component/Admin/Course/CourseAdmin";
+import LoginAdmin from "./Component/Admin/Login/LoginAdmin";
 
+import UserAdmin from "./Component/Admin/User/UserAdmin";
 
 export const history = createBrowserHistory({ window });
 
@@ -39,7 +44,6 @@ root.render(
 
           <Route path="course">
             <Route path=":maDanhMuc" element={<CoursesList />}></Route>
-       
           </Route>
           <Route path="profile" element={<Profile />}></Route>
           <Route path="detail">
@@ -49,8 +53,13 @@ root.render(
             <Route path=":tenKhoaHoc" element={<Search />}></Route>
           </Route>
           <Route path="profile" element={<Profile />}></Route>
-
-          
+        </Route>
+        <Route path="admin" element={<AdminTemplate />}>
+          <Route path="" element={<HomeAdmin />}></Route>
+          <Route path="home" element={<HomeAdmin />}></Route>
+          <Route path="course" element={<CourseAdmin />}></Route>
+          <Route path="login" element={<LoginAdmin />}></Route>
+          <Route path="user" element={<UserAdmin />}></Route>
         </Route>
       </Routes>
     </HistoryRouter>

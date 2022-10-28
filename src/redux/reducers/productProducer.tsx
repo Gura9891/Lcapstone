@@ -59,7 +59,9 @@ const productReducer = createSlice({
     },
 
     getDetailItemAction: (state, action: PayloadAction<ProductModel[]>) => {
-      state.coursesList.push(action.payload)
+      state.coursesList = [action.payload]
+      console.log('action.payload,', action.payload);
+      
     },
   },
 });

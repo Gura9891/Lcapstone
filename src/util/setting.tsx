@@ -40,6 +40,15 @@ export const config = {
     }
     return null;
   },
+  deleteCookie: (name: string) => {
+    document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;'
+  },
+  deleteStore: (name: string) => {
+    if (localStorage.getItem(name)) {
+      localStorage.removeItem(name)
+    }
+    return null
+  },
   ACCESS_TOKEN: "accessToken",
   USER_LOGIN: "userLogin",
 };
@@ -51,6 +60,8 @@ export const {
   setStore,
   setStoreJson,
   getStoreJson,
+  deleteCookie,
+  deleteStore,
   ACCESS_TOKEN,
   USER_LOGIN,
 } = config;
