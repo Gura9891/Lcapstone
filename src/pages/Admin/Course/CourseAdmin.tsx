@@ -7,6 +7,7 @@ type Props = {}
 export default function CourseAdmin({}: Props) {
   return (
     <div>
+      
       <TableCourse />
     </div>
   )

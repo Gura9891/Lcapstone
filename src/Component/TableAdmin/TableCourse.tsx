@@ -63,7 +63,7 @@ export default function TableCourse ({}: Props) {
       width:100,
       render: e => (
         <div className='d-flex justify-content-between'>
-          <ModalUserRegister/>
+          <ModalUserRegister taiKhoan=''/>
           <ModalCourse course={e} />
           <button className='red-button p-2' onClick={() => {
             dispatch(deleteCouseAdminApi(e.maKhoaHoc))
