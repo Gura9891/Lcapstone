@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { message } from "antd";
 import { http } from "../../util/setting";
 import { AppDispatch } from "../configStore";
 
@@ -34,12 +35,42 @@ export interface NguoiTAO {
   tenLoaiNguoiDung: string;
 }
 
+export interface WelcomeAdmin {
+  maKhoaHoc:        string;
+  biDanh:           string;
+  tenKhoaHoc:       string;
+  moTa:             string;
+  luotXem:          number;
+  danhGia:          number;
+  hinhAnh:          string;
+  maNhom:           string;
+  ngayTao:          string;
+  maDanhMucKhoaHoc: string;
+  taiKhoanNguoiTao: string;
+}
+
+export interface userAdmin {
+  taiKhoan: string
+  matKhau: string
+  hoTen: string
+  soDT: string
+  maLoaiNguoiDung: string
+  maNhom: string
+  email: string
+}
+
+
+
+
 const initialState: any = {
   arrProduct: [],
   arrProductList: [],
   coursesList: [],
   searchProduct :[]
 };
+
+
+
 
 const productReducer = createSlice({
   name: "productReducer",
@@ -63,6 +94,7 @@ const productReducer = createSlice({
       console.log('action.payload,', action.payload);
       
     },
+    
   },
 });
 
@@ -78,7 +110,7 @@ export default productReducer.reducer;
 
 //API
 
-export const getProductApi = () => {
+export const getProductApi = () => { //getListCoursesApi
   return async (dispatch: AppDispatch) => {
     try {
       const result = await http.get(
@@ -107,6 +139,24 @@ export const getProductListApi = () => {
     }
   };
 };
+//deleteproductlist
+
+//----------------delete course-----------------
+export const deleteCouseAdminApi = (id: string) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      let result = await http.delete('QuanLyKhoaHoc/XoaKhoaHoc?MaKhoaHoc=' + id)
+      message.success(result.data)
+      dispatch(getProductApi())
+    } catch (err:any) {
+      message.error(err.response.data)
+    }
+  }
+}
+
+
+
+
 
 export const getCourseListApi = (maDanhMuc: any ) => {
   return async (dispatch: AppDispatch) => {
@@ -156,3 +206,35 @@ export const getDetailApi = (maKhoaHoc: any ) => {
     }
   };
 };
+
+//admin
+export const addCourseAdmin = (course: WelcomeAdmin, file: FormData) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      let result = await http
+        .post('/QuanLyKhoaHoc/ThemKhoaHoc', course)
+        .then(() => {
+          http.post('QuanLyKhoaHoc/UploadHinhAnhKhoaHoc', file)
+        })
+      dispatch(getProductApi())
+      message.success('Thêm khoá học thành công')
+    } catch (err:any) {
+      console.log(err)
+      message.error(err.response.data)
+    }
+  }
+}
+
+export const updateCourseAdmin = (course: WelcomeAdmin, file: FormData) => {
+  return async (dispatch: AppDispatch) => {
+    await http.put('QuanLyKhoaHoc/CapNhatKhoaHoc', course)
+    try {
+      await http.post('QuanLyKhoaHoc/UploadHinhAnhKhoaHoc', file)
+      dispatch(getProductApi())
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
+
+

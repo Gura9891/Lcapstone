@@ -21,11 +21,10 @@ import Profile from "./pages/Profile/Profile";
 import Search from "./pages/Search/Search";
 import Detail from "./pages/Detail/Detail";
 import AdminTemplate from "./templates/AdminTemplate";
-import HomeAdmin from "./Component/Admin/Home/HomeAdmin";
-import CourseAdmin from "./Component/Admin/Course/CourseAdmin";
-import LoginAdmin from "./Component/Admin/Login/LoginAdmin";
-
-import UserAdmin from "./Component/Admin/User/UserAdmin";
+import HomeAdmin from "./pages/Admin/Home/HomeAdmin";
+import CourseAdmin from "./pages/Admin/Course/CourseAdmin";
+import LoginAdmin from "./pages/Admin/Login/LoginAdmin";
+import UserAdmin from "./pages/Admin/User/UserAdmin";
 
 export const history = createBrowserHistory({ window });
 
