@@ -27,15 +27,6 @@ export interface userLogin {
   taiKhoan: string;
   matKhau: string;
 }
-export interface userAdmin {
-  taiKhoan: string;
-  matKhau: string;
-  hoTen: string;
-  soDT: string;
-  maLoaiNguoiDung: string;
-  maNhom: string;
-  email: string;
-}
 
 export interface userType {
   maLoaiNguoiDung: string;
