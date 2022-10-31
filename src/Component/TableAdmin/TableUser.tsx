@@ -1,11 +1,16 @@
 import Table, { ColumnsType } from 'antd/lib/table'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { AppDispatch, RootState } from '../../redux/configStore'
-import { addUserApi, ChiTietKhoaHocGhiDanh, getListUserApi, deleteUserApi, Profile, updateUserApi,  userType } from '../../redux/reducers/userReducer'
-import ModalUserRegister from './ModalUserRegister'
-import ModalUser from './ModalUser'
+import { AppDispatch,RootState } from '../../redux/configStore'
+import { addUserApi,   ChiTietKhoaHocGhiDanh,
+  getListUserApi,
+  deleteUserApi,
+  Profile,
+  updateUserApi,
+  userType, } from '../../redux/reducers/userReducer'
 
+import ModalUser from './ModalUser'
+import ModalUserRegister from './ModalUserRegister'
 
 type Props = {
 }
@@ -40,12 +45,12 @@ export default function TableUser ({}: Props) {
       dataIndex: '',
       width:100,
       render: e => (
-        <div className='d-flex justify-content-between'>
+        <div className='d-flex justify-content-between bg-red text-red '>
           <ModalUserRegister taiKhoan={e.taiKhoan}/>
           <ModalUser user={e}/>
           <button className='red-button p-2' onClick={() => {
             dispatch(deleteUserApi(e.taiKhoan))
-          }}><i className='bi bi-trash3 m-0 p-2'></i></button>
+          }}><i className="fa-solid fa-trash"></i></button>
         </div>
       )
     }
@@ -58,5 +63,5 @@ export default function TableUser ({}: Props) {
     dispatch(getListUserApi())
   },[])
 
-  return <Table columns={columns} dataSource={data} />
+  return <Table columns={columns} dataSource={data} className="animate__animated animate__fadeIn animate__delay-2s"/>
 }

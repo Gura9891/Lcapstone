@@ -101,7 +101,7 @@ export default function ModalCourse ({ course }: Props) {
           type='primary'
           onClick={showModal}
         >
-          <i className='bi bi-pencil-square m-0 p-2'></i>
+        <i className="fa-solid fa-pen-to-square"></i>
         </Button>
       ) : (
         <Button

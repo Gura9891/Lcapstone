@@ -3,11 +3,11 @@ import React, { useEffect, useState } from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useDispatch } from 'react-redux'
-import { AppDispatch } from '../../redux/configStore'
-import { addUserApi, updateUserApi, userAdmin } from '../../redux/reducers/userReducer' 
+import { AppDispatch } from '../../redux/configStore' 
+import { addUserApi, updateUserApi, updateProfile } from '../../redux/reducers/userReducer'
 
 type Props = {
-  user?: userAdmin 
+  user?: updateProfile 
 }
 
 export default function ModalUser ({ user }: Props) {
@@ -85,11 +85,11 @@ export default function ModalUser ({ user }: Props) {
             setOpen(true)
           }}
         >
-          <i className='bi bi-pencil-square m-0 p-2'></i>
+          <i className="fa-solid fa-pen-to-square"></i>
         </Button>
       ) : (
         <Button
-          className='green-button fs-4 py-4 h-100 w-25'
+          className='green-button fs-4 py-4 h-100 w-25 animate__animated animate__fadeIn'
           type='primary'
           onClick={showModal}
         >

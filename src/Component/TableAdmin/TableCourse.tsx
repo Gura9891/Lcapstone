@@ -68,7 +68,7 @@ export default function TableCourse ({}: Props) {
           <button className='red-button p-2' onClick={() => {
             dispatch(deleteCouseAdminApi(e.maKhoaHoc))
           }}>
-            <i className='bi bi-trash3 m-0 p-2'></i>
+            <i className='fa-solid fa-trash'></i>
           </button>
         </div>
       )

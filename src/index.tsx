@@ -54,7 +54,7 @@ root.render(
           <Route path="profile" element={<Profile />}></Route>
         </Route>
         <Route path="admin" element={<AdminTemplate />}>
-          <Route path="" element={<HomeAdmin />}></Route>
+          <Route path="" element={<LoginAdmin />}></Route>
           <Route path="home" element={<HomeAdmin />}></Route>
           <Route path="course" element={<CourseAdmin />}></Route>
           <Route path="login" element={<LoginAdmin />}></Route>
