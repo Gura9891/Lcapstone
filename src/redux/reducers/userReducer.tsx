@@ -280,6 +280,24 @@ export const updateUserApi = (user: updateProfile) => {
     }
   };
 };
+//search
+export const searchUserApi = (key: string) => {
+  console.log(key);
+  return async (dispatch: AppDispatch) => {
+    try {
+      if (key !== "") {
+        const result = await http.get(
+          "/QuanLyNguoiDung/TimKiemNguoiDung?tuKhoa=" + key
+        );
+        dispatch(arrUserAction(result.data));
+      } else {
+        dispatch(getListUserApi());
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+};
 
 //khóa học
 //danh sách đã đăng ký
