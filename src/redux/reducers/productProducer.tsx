@@ -13,7 +13,7 @@ export interface ProductModel {
   maNhom: string;
   ngayTao: string;
   soLuongHocVien: number;
-  nguoiTao: NguoiTAO;
+  nguoiTao: NguoiTao;
   danhMucKhoaHoc: DanhMucKhoaHoc;
 }
 
@@ -28,7 +28,7 @@ export interface DanhMuc {
 
 }
 
-export interface NguoiTAO {
+export interface NguoiTao {
   taiKhoan: string;
   hoTen: string;
   maLoaiNguoiDung: string;
@@ -58,7 +58,11 @@ export interface userAdmin {
   maNhom: string
   email: string
 }
-
+export interface RegisterCourse {
+  taiKhoan: string
+  hoTen: string
+  biDanh: string
+}
 
 
 
@@ -69,6 +73,10 @@ const initialState: any = {
   searchProduct :[],
   cart:[],
   oderDetail:[]
+  arrUserPendingRegisterCourse: [],
+  arrUserRegisteredCourse: [],
+  arrUserNotWriteCourse: [],
+  arrProductListCourse:[],
 };
 
 
@@ -99,8 +107,15 @@ const productReducer = createSlice({
       const cartItem = [...action.payload]
       state.cart.push(cartItem)
     },
-    
-    
+    getArrUserPendingRegisterCourseAction: (state, action: PayloadAction<RegisterCourse[]>) => {
+      state.arrUserPendingRegisterCourse = action.payload
+    },
+    getArrUserRegisteredCourseAction: (state, action: PayloadAction<RegisterCourse[]>) => {
+      state.arrUserRegisteredCourse = action.payload
+    },
+    getArrUserNotWriteCourseAction: (state, action: PayloadAction<RegisterCourse[]>) => {
+      state.arrUserNotWriteCourse = action.payload
+    },
   },
 });
 
@@ -110,7 +125,10 @@ export const {
   getAllCourseListAction,
   getSearchProductAction,
   getDetailItemAction,
-  addCart
+  addCart,
+  getArrUserPendingRegisterCourseAction,
+  getArrUserRegisteredCourseAction,
+  getArrUserNotWriteCourseAction
 } = productReducer.actions;
 
 export default productReducer.reducer;
@@ -164,6 +182,59 @@ export const deleteCouseAdminApi = (id: string) => {
 
 
 
+//học viên chờ duyệt khóa học
+export const getListUserPendingRegisterCourseApi = (maKhoaHoc: string) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      let data = {
+        maKhoaHoc: maKhoaHoc
+      }
+      let result = await http.post("QuanLyNguoiDung/LayDanhSachHocVienChoXetDuyet", data)
+      dispatch(getArrUserPendingRegisterCourseAction(result.data))
+    }
+    catch(err) {
+      console.log(err)
+    }
+  }
+}
+//học viên đã đăng ký khóa học
+export const getArrUserRegisteredCourseApi = (maKhoaHoc: string) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      let data = {
+        maKhoaHoc: maKhoaHoc
+      }
+      let result = await http.post("QuanLyNguoiDung/LayDanhSachHocVienKhoaHoc", data)
+      dispatch(getArrUserRegisteredCourseAction(result.data))
+    }
+    catch(err) {
+      console.log(err)
+    }
+  }
+}
+//user
+//chưa ghi danh
+export const getArrUserNotnotWriteCourseApi = (maKhoaHoc: string) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      let data = {
+        maKhoaHoc: maKhoaHoc
+      }
+      let result = await http.post("QuanLyNguoiDung/LayDanhSachNguoiDungChuaGhiDanh", data)
+      dispatch(getArrUserNotWriteCourseAction(result.data))
+    }
+    catch(err) {
+      console.log(err)
+    }
+  }
+}
+//đã ghi danh
+
+
+
+
+
+
 
 export const getCourseListApi = (maDanhMuc: any ) => {
   return async (dispatch: AppDispatch) => {
@@ -180,7 +251,7 @@ export const getCourseListApi = (maDanhMuc: any ) => {
     }
   };
 };
-
+//search product
 export const getSearchProductApi = (tenKhoaHoc:string | undefined) => {
   return async (dispatch : AppDispatch) => {
     try{
@@ -196,6 +267,23 @@ export const getSearchProductApi = (tenKhoaHoc:string | undefined) => {
     }
   }
 }
+//search admin course
+export const searchCourseAdminApi = (key: string) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      if (key) {
+        let result = await http.get(
+          'QuanLyKhoaHoc/LayDanhSachKhoaHoc?tenKhoaHoc=' + key
+        )
+        console.log(result)
+        dispatch(getSearchProductAction(result.data))
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
+}
+
 
 
 export const getDetailApi = (maKhoaHoc: any ) => {

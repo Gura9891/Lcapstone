@@ -2,12 +2,10 @@ import Table, { ColumnsType } from 'antd/lib/table'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../redux/configStore'
-import { DanhMucKhoaHoc, deleteCouseAdminApi, getProductListApi, getProductApi, NguoiTAO } from '../../redux/reducers/productProducer'
 import { getListUserApi } from '../../redux/reducers/userReducer'
 import ModalCourse from './ModalCourse'
-import ModalUserRegister from './ModalUserRegister'
-
-
+import { DanhMucKhoaHoc, deleteCouseAdminApi, getProductApi, getProductListApi } from '../../redux/reducers/productProducer'
+import ModalCourseRegister from './ModalCourseRegister'
 
 type Props = {}
 
@@ -27,7 +25,7 @@ export interface DataType {
 
 export default function TableCourse ({}: Props) {
   const dispatch: AppDispatch = useDispatch()
-  const { arrayListCourses } = useSelector(
+  const { arrProduct } = useSelector(
     (state: RootState) => state.productProducer
   )
 
@@ -63,7 +61,7 @@ export default function TableCourse ({}: Props) {
       width:100,
       render: e => (
         <div className='d-flex justify-content-between'>
-          <ModalUserRegister taiKhoan=''/>
+          <ModalCourseRegister maKhoaHoc={e.maKhoaHoc}/>
           <ModalCourse course={e} />
           <button className='red-button p-2' onClick={() => {
             dispatch(deleteCouseAdminApi(e.maKhoaHoc))
@@ -75,13 +73,14 @@ export default function TableCourse ({}: Props) {
     }
   ]
 
-  const data: DataType[] = arrayListCourses
-
+  const data: DataType[] = arrProduct
+  console.log('datacourse',data);
+  
   useEffect(() => {
     dispatch(getProductApi())
     dispatch(getProductListApi())
     dispatch(getListUserApi())
   }, [])
 
-  return <Table columns={columns} dataSource={data} />
+  return <Table columns={columns} dataSource={data}/>
 }

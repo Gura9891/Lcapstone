@@ -1,18 +1,17 @@
 import { Button, Modal } from 'antd'
-import React, { ChangeEvent, useState } from 'react'
+import React, { useState } from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../redux/configStore'
-import { updateProfile } from '../../redux/reducers/userReducer'
-import { addCourseAdmin, WelcomeAdmin, DanhMuc, ProductModel, updateCourseAdmin } from '../../redux/reducers/productProducer'
-import {http} from '../../util/setting'
+import { addCourseAdmin, DanhMuc, ProductModel, updateCourseAdmin } from '../../redux/reducers/productProducer'
+
+
 type Props = {
   course?: ProductModel
 }
 
 export default function ModalCourse ({ course }: Props) {
-  const [image, setImage] = React.useState<FileList | null>()
   const [loading, setLoading] = useState(false)
   const [open, setOpen] = useState(false)
   const dispatch: AppDispatch = useDispatch()
@@ -105,7 +104,7 @@ export default function ModalCourse ({ course }: Props) {
         </Button>
       ) : (
         <Button
-          className='green-button fs-4 py-4 h-100 w-25'
+          className='green-button fs-4 py-4 h-100 w-25 animate__animated animate__fadeIn'
           type='primary'
           onClick={showModal}
         >
