@@ -3,14 +3,32 @@ import { Tabs } from "antd";
 import { Button, message, Space } from "antd";
 
 import React from "react";
-import { NavLink } from "react-router-dom";
-import { ProductModel } from "../../redux/reducers/productProducer";
+import { useDispatch } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+import {  addCart, ProductModel } from "../../redux/reducers/productProducer";
 
 type Props = {
   detailProduct: ProductModel;
 };
 
 export default function DetailProduct({ detailProduct }: Props) {
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const handleCart = () => {
+    const causer = detailProduct
+    console.log({causer});
+    dispatch(
+      addCart([causer])
+    )
+
+    
+  }
+
+  const success = () => {
+		message.success("Thêm vào giỏ hàng thành công !");
+	};
 
   return (
     <div>
@@ -54,6 +72,22 @@ export default function DetailProduct({ detailProduct }: Props) {
                   <span>Số lượng học viên:</span>{" "}
                   <strong>{detailProduct.soLuongHocVien}</strong>
                 </h3>
+                <div>
+                  <button className="btn btn-danger" onClick={(detailProduct) => {
+                    navigate('/cart');
+                    handleCart()
+                    success()
+                  }}
+                    
+                  >Submit</button>
+                </div>
+              </div>
+            </div>
+            <hr />
+            <div>
+              <div>
+                Mô tả Khoá Học :
+                <p>{detailProduct.moTa}</p>
               </div>
             </div>
           </div>
@@ -62,3 +96,5 @@ export default function DetailProduct({ detailProduct }: Props) {
     </div>
   );
 }
+
+
