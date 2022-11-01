@@ -74,6 +74,7 @@ const initialState: any = {
   arrUserPendingRegisterCourse: [],
   arrUserRegisteredCourse: [],
   arrUserNotWriteCourse: [],
+  cart: [],
 };
 
 const productReducer = createSlice({
@@ -107,6 +108,10 @@ const productReducer = createSlice({
     getArrUserNotWriteCourseAction: (state, action: PayloadAction<RegisterCourse[]>) => {
       state.arrUserNotWriteCourse = action.payload
     },
+    addCart: (state, action: PayloadAction<ProductModel[]>) => {
+      const cartItem = [...action.payload]
+      state.cart.push(cartItem)
+    },
   },
 });
 
@@ -118,7 +123,8 @@ export const {
   getDetailItemAction,
   getArrUserPendingRegisterCourseAction,
   getArrUserRegisteredCourseAction,
-  getArrUserNotWriteCourseAction
+  getArrUserNotWriteCourseAction,
+  addCart
 } = productReducer.actions;
 
 export default productReducer.reducer;
