@@ -77,7 +77,7 @@ export default function TableCourse ({}: Props) {
   console.log('datacourse',data);
   
   useEffect(() => {
-    dispatch(getProductApi())
+    // dispatch(getProductApi())
     dispatch(getProductListApi())
     dispatch(getListUserApi())
   }, [])

@@ -71,16 +71,10 @@ const initialState: any = {
   arrProductList: [],
   coursesList: [],
   searchProduct :[],
-  cart:[],
-  oderDetail:[]
   arrUserPendingRegisterCourse: [],
   arrUserRegisteredCourse: [],
   arrUserNotWriteCourse: [],
-  arrProductListCourse:[],
 };
-
-
-
 
 const productReducer = createSlice({
   name: "productReducer",
@@ -102,10 +96,7 @@ const productReducer = createSlice({
     getDetailItemAction: (state, action: PayloadAction<ProductModel[]>) => {
       state.coursesList = [action.payload]
       console.log('action.payload,', action.payload);
-    },
-    addCart: (state, action: PayloadAction<ProductModel[]>) => {
-      const cartItem = [...action.payload]
-      state.cart.push(cartItem)
+      
     },
     getArrUserPendingRegisterCourseAction: (state, action: PayloadAction<RegisterCourse[]>) => {
       state.arrUserPendingRegisterCourse = action.payload
@@ -125,7 +116,6 @@ export const {
   getAllCourseListAction,
   getSearchProductAction,
   getDetailItemAction,
-  addCart,
   getArrUserPendingRegisterCourseAction,
   getArrUserRegisteredCourseAction,
   getArrUserNotWriteCourseAction
@@ -301,7 +291,6 @@ export const getDetailApi = (maKhoaHoc: any ) => {
     }
   };
 };
-
 
 //admin
 export const addCourseAdmin = (course: WelcomeAdmin, file: FormData) => {
