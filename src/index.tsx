@@ -25,8 +25,10 @@ import HomeAdmin from "./pages/Admin/Home/HomeAdmin";
 import CourseAdmin from "./pages/Admin/Course/CourseAdmin";
 import LoginAdmin from "./pages/Admin/Login/LoginAdmin";
 import UserAdmin from "./pages/Admin/User/UserAdmin";
+import Cart from "./pages/Cart/Cart";
 import TableCourse from "./Component/TableAdmin/TableCourse";
 import TableUser from "./Component/TableAdmin/TableUser";
+
 
 export const history = createBrowserHistory({ window });
 
@@ -53,6 +55,8 @@ root.render(
           <Route path="search">
             <Route path=":tenKhoaHoc" element={<Search />}></Route>
           </Route>
+          <Route path="cart" element={<Cart />}></Route>
+          
           <Route path="profile" element={<Profile />}></Route>
         </Route>
         <Route path="admin" element={<AdminTemplate />}>
