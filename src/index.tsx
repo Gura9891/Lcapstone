@@ -25,6 +25,8 @@ import HomeAdmin from "./pages/Admin/Home/HomeAdmin";
 import CourseAdmin from "./pages/Admin/Course/CourseAdmin";
 import LoginAdmin from "./pages/Admin/Login/LoginAdmin";
 import UserAdmin from "./pages/Admin/User/UserAdmin";
+import TableCourse from "./Component/TableAdmin/TableCourse";
+import TableUser from "./Component/TableAdmin/TableUser";
 
 export const history = createBrowserHistory({ window });
 
@@ -59,6 +61,8 @@ root.render(
           <Route path="course" element={<CourseAdmin />}></Route>
           <Route path="login" element={<LoginAdmin />}></Route>
           <Route path="user" element={<UserAdmin />}></Route>
+          <Route path="test" element={<TableCourse />}></Route>
+          <Route path="test2" element={<TableUser />}></Route>
         </Route>
       </Routes>
     </HistoryRouter>

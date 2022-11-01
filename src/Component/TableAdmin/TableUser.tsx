@@ -59,9 +59,10 @@ export default function TableUser ({}: Props) {
   const data: DataType[] = arrUser;
 
 
+
   useEffect(() => {
     dispatch(getListUserApi())
   },[])
 
-  return <Table columns={columns} dataSource={data} className="animate__animated animate__fadeIn animate__delay-2s"/>
+  return <Table columns={columns} dataSource={data}/>
 }
