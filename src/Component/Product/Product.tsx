@@ -38,9 +38,7 @@ export default function Product({ product }: Props) {
       />
     }
     actions={[
-      // <SettingOutlined key="setting" />,
-      // <EditOutlined key="edit" />,
-      // <EllipsisOutlined key="ellipsis" />,
+
       
       <NavLink to={`/detail/${product.maKhoaHoc}`} className="btn">
       Đăng Ký

@@ -2,7 +2,7 @@ import { Button, Modal } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../redux/configStore'
-import { registerCourseApi, getListCourseUnRegisterApi } from '../../redux/reducers/userReducer'
+import { registerCourseApi, getListCourseNotRegisterApi } from '../../redux/reducers/userReducer'
 import UserRegister from '../../pages/Admin/User/TableUser/UserRegister'
 import UserRegistered from '../../pages/Admin/User/TableUser/UserRegister'
 
@@ -37,7 +37,7 @@ export default function ModalUserRegister ({taiKhoan} : Props) {
         type='primary'
         onClick={() => {
           showModal()
-          dispatch(getListCourseUnRegisterApi(taiKhoan))
+          dispatch(getListCourseNotRegisterApi(taiKhoan))
         }}
       >
       <i className="fa-solid fa-plus"></i>

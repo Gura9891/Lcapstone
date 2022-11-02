@@ -28,6 +28,7 @@ import UserAdmin from "./pages/Admin/User/UserAdmin";
 import Cart from "./pages/Cart/Cart";
 import TableCourse from "./Component/TableAdmin/TableCourse";
 import TableUser from "./Component/TableAdmin/TableUser";
+import ModalCourse from "./Component/TableAdmin/ModalCourse";
 
 
 export const history = createBrowserHistory({ window });
@@ -66,7 +67,8 @@ root.render(
           <Route path="login" element={<LoginAdmin />}></Route>
           <Route path="user" element={<UserAdmin />}></Route>
           <Route path="test" element={<TableCourse />}></Route>
-          <Route path="test2" element={<TableUser />}></Route>
+          <Route path="test2" element={<ModalCourse />}></Route>
+          <Route path="test3" element={<TableCourse />}></Route>
         </Route>
       </Routes>
     </HistoryRouter>

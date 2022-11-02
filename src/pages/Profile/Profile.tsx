@@ -173,7 +173,7 @@ export default function Profile({}: Props) {
             id="v-pills-tabContent"
           >
             <div
-              className="container tab-pane fade show active"
+              className="container tab-pane  show active"
               id="v-pills-profile"
               role="tabpanel"
               aria-labelledby="v-pills-profile-tab"

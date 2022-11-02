@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import { Space, Table, Tag } from 'antd'
 import { ColumnsType } from 'antd/es/table'
-import { AppDispatch, RootState} from '../../../../../redux/configStore' 
+import { AppDispatch, RootState } from '../../../../../redux/configStore'
 import { useDispatch, useSelector } from 'react-redux'
+import { arrUserRegisteredCourseApi } from '../../../../../redux/reducers/productProducer'
 import { CancelRegisterCourseApi } from '../../../../../redux/reducers/userReducer'
-import { getArrUserRegisteredCourseApi } from '../../../../../redux/reducers/productProducer'
 
 type Props = {
   maKhoaHoc: string
@@ -15,7 +15,7 @@ interface DataType {
   hoTen: string
   biDanh: string
 }
-export default function CourseRegistered ({ maKhoaHoc }: Props) {
+export default function CourseRegisterd ({ maKhoaHoc }: Props) {
   const dispatch: AppDispatch = useDispatch()
 
   const {arrUserRegisteredCourse} = useSelector((state: RootState) => state.productProducer)
@@ -54,7 +54,7 @@ export default function CourseRegistered ({ maKhoaHoc }: Props) {
   const data: DataType[] = arrUserRegisteredCourse
 
   useEffect(() => {
-    dispatch(getArrUserRegisteredCourseApi(maKhoaHoc))
+    dispatch(arrUserRegisteredCourseApi(maKhoaHoc))
   },[maKhoaHoc])
 
   return (
