@@ -108,19 +108,19 @@ const userReducer = createSlice({
     arrUserAction: (state, action: PayloadAction<Profile[]>) => {
       state.arrUser = action.payload;
     },
-    getListCourseUnRegisterAction: (
+    getArrCourseCancelRegisterAction: (
       state,
       action: PayloadAction<courseOfUser[]>
     ) => {
       state.listCourseOfUser = action.payload;
     },
-    getListCoursePendingRegisterAction: (
+    getArrCoursePendingRegisterAction: (
       state,
       action: PayloadAction<courseOfUser[]>
     ) => {
       state.listCoursePendingRegister = action.payload;
     },
-    getListCourseRegisteredAction: (
+    getArrCourseRegisteredAction: (
       state,
       action: PayloadAction<courseOfUser[]>
     ) => {
@@ -136,9 +136,9 @@ export const {
   getProfileAction,
   userCheck,
   arrUserAction,
-  getListCourseUnRegisterAction,
-  getListCoursePendingRegisterAction,
-  getListCourseRegisteredAction,
+  getArrCourseCancelRegisterAction,
+  getArrCoursePendingRegisterAction,
+  getArrCourseRegisteredAction,
   logoutAction,
 } = userReducer.actions;
 
@@ -299,8 +299,13 @@ export const searchUserApi = (key: string) => {
   };
 };
 
+
+
+
+
 //khóa học
-//danh sách đã đăng ký
+
+//danh sách đã đăng ký và được duyệt
 export const getListCourseRegisteredApi = (taiKhoan: string) => {
   return async (dispatch: AppDispatch) => {
     try {
@@ -312,14 +317,15 @@ export const getListCourseRegisteredApi = (taiKhoan: string) => {
         data
       );
       console.log(result);
-      dispatch(getListCourseRegisteredAction(result.data));
+      dispatch(getArrCourseRegisteredAction(result.data));
     } catch (err) {
       console.log(err);
     }
   };
 };
 
-//lấy danh sách pending đăng ký
+
+//lấy danh sách pending đăng ký khóa học
 
 export const getListCoursePendingRegisterApi = (taiKhoan: string) => {
   console.log(taiKhoan);
@@ -333,13 +339,14 @@ export const getListCoursePendingRegisterApi = (taiKhoan: string) => {
         data
       );
       console.log(result);
-      dispatch(getListCoursePendingRegisterAction(result.data));
+      dispatch(getArrCoursePendingRegisterAction(result.data));
     } catch (err) {
       console.log(err);
     }
   };
 };
-//ghi danh
+
+//đã ghi danh khóa học
 export const registerCourseApi = (maKhoaHoc: string, taiKhoan: string) => {
   return async (dispatch: AppDispatch) => {
     try {
@@ -357,7 +364,7 @@ export const registerCourseApi = (maKhoaHoc: string, taiKhoan: string) => {
     }
   };
 };
-//hủy đăng ký
+//hủy đăng ký khóa học
 export const CancelRegisterCourseApi = (
   maKhoaHoc: string,
   taiKhoan: string
@@ -379,13 +386,13 @@ export const CancelRegisterCourseApi = (
   };
 };
 //chưa ghi danh
-export const getListCourseUnRegisterApi = (tenTaiKhoan: string) => {
+export const getListCourseNotRegisterApi = (tenTaiKhoan: string) => {
   return async (dispatch: AppDispatch) => {
     try {
       let result = await http.post(
         "QuanLyNguoiDung/LayDanhSachKhoaHocChuaGhiDanh?TaiKhoan=" + tenTaiKhoan
       );
-      dispatch(getListCourseUnRegisterAction(result.data));
+      dispatch(getArrCourseCancelRegisterAction(result.data));
     } catch (err) {
       console.log(err);
     }

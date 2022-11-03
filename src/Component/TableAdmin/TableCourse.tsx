@@ -1,10 +1,12 @@
 import Table, { ColumnsType } from 'antd/lib/table'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { AppDispatch, RootState } from '../../redux/configStore'
-import { getListUserApi } from '../../redux/reducers/userReducer'
-import ModalCourse from './ModalCourse'
+import { AppDispatch, RootState} from '../../redux/configStore'
+
 import { DanhMucKhoaHoc, deleteCouseAdminApi, getProductApi, getProductListApi } from '../../redux/reducers/productProducer'
+import { getListUserApi } from '../../redux/reducers/userReducer'
+
+import ModalCourse from './ModalCourse'
 import ModalCourseRegister from './ModalCourseRegister'
 
 type Props = {}
@@ -25,7 +27,7 @@ export interface DataType {
 
 export default function TableCourse ({}: Props) {
   const dispatch: AppDispatch = useDispatch()
-  const { arrProduct } = useSelector(
+  const { arrProductList } = useSelector(
     (state: RootState) => state.productProducer
   )
 
@@ -73,14 +75,15 @@ export default function TableCourse ({}: Props) {
     }
   ]
 
-  const data: DataType[] = arrProduct
-  console.log('datacourse',data);
+  const data: DataType[] = arrProductList
+  console.log('datatypeg',data);
   
+
   useEffect(() => {
-    // dispatch(getProductApi())
+    dispatch(getProductApi())
     dispatch(getProductListApi())
     dispatch(getListUserApi())
   }, [])
 
-  return <Table columns={columns} dataSource={data}/>
+  return <Table columns={columns} dataSource={data} />
 }

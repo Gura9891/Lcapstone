@@ -1,11 +1,12 @@
 import { Button, Modal } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import CourseRegister from '../../pages/Admin/Course/CoursesList/TableCourse/CourseRegister'
-import CourseRegistered from '../../pages/Admin/Course/CoursesList/TableCourse/CourseRegistered'
-import { AppDispatch, RootState } from '../../redux/configStore'
-import { getArrUserNotnotWriteCourseApi, RegisterCourse } from '../../redux/reducers/productProducer'
-import { registerCourseApi } from '../../redux/reducers/userReducer' 
+import CourseRegister from '../../pages/Admin/Course/CoursesList/TableCourse/CourseRegister';
+import CourseRegisterd from '../../pages/Admin/Course/CoursesList/TableCourse/CourseRegistered';
+import { AppDispatch, RootState } from '../../redux/configStore';
+import { arrUserNotWriteCourseApi, RegisterCourse } from '../../redux/reducers/productProducer';
+import { registerCourseApi } from '../../redux/reducers/userReducer';
+
 
 
 type Props = {
@@ -39,7 +40,7 @@ export default function ModalCourseRegister ({ maKhoaHoc }: Props) {
         type='primary'
         onClick={() => {
           showModal()
-          dispatch(getArrUserNotnotWriteCourseApi(maKhoaHoc))
+          dispatch(arrUserNotWriteCourseApi(maKhoaHoc))
         }}
       >
         <i className='bi bi-plus-circle m-0 p-2'></i>
@@ -82,7 +83,7 @@ export default function ModalCourseRegister ({ maKhoaHoc }: Props) {
           </div>
           <div className='form-item'>
             <p className='fs-5 py-4'>Học viên đã đăng ký</p>
-            <CourseRegistered maKhoaHoc={maKhoaHoc}/>
+            <CourseRegisterd maKhoaHoc={maKhoaHoc}/>
           </div>
         </section>
       </Modal>

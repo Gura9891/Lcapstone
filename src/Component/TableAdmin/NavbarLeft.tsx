@@ -20,7 +20,7 @@ export default function NavbarLeft ({ Component }: props) {
       </div>
       <div className='admin-navbar-items  h-100 w-100'>
         <ul>
-          <li className='animate__animated animate__fadeIn'>
+          <li >
             <NavLink
               to={'/admin/index'}
               className={` ${
@@ -33,7 +33,7 @@ export default function NavbarLeft ({ Component }: props) {
             </NavLink>
           </li>
 
-          <li className='animate__animated animate__fadeIn animate__delay-1s'>
+          <li>
             <NavLink
               to={'/admin/user'}
               className={` ${
@@ -46,7 +46,7 @@ export default function NavbarLeft ({ Component }: props) {
             </NavLink>
           </li>
 
-          <li className='animate__animated animate__fadeIn animate__delay-2s'>
+          <li>
             <NavLink
               to={'/admin/course'}
               className={` ${

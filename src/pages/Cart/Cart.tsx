@@ -1,36 +1,83 @@
+import { add } from 'lodash';
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { RootState } from '../../redux/configStore';
-import { getDetailApi, ProductModel } from '../../redux/reducers/productProducer';
+import { addCart, clearCart, getDetailApi, ProductModel } from '../../redux/reducers/productProducer';
+import { ACCESS_TOKEN, getStore } from '../../util/setting';
 
 type Props = {
-    
+
 }
 
 export default function Cart({ }: Props) {
 
-    const { cart,oderDetail } = useSelector(
+    const { cart } = useSelector(
         (state: RootState) => state.productProducer
-      );
-      console.log({cart});
-      
+    );
+    console.log({ cart });
     
-      const renderTable = () => {
-          
-          return cart[0]?.map((prod:ProductModel,index:number) => {
-              return <tr key={index}>
-                  <td>{prod.maKhoaHoc}</td>
-                  <td>
-                      <img src={prod.hinhAnh} alt="..." height={250}/>
-                  </td>
-                  <td>{prod.ngayTao}</td>
-                  <td>{prod.nguoiTao.hoTen}</td>
-              </tr>
-          })
-      }
-    
-      
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const handleClearCart = () => {
+        dispatch(
+            clearCart(cart[0])
+        )
+    }
+
+    const addCartItem = () => {
+        const objText = cart;
+        dispatch(
+            addCart([objText])
+        )
+    }
+
+    const messes = () => {
+        alert('ban co muon xoa khong')
+    }
+
+    const handleSubmit = () => {
+        console.log(getStore(ACCESS_TOKEN));
+
+        if (getStore(ACCESS_TOKEN) === null) {
+            alert('yêu cầu bạn hãy đăng nhập ')
+            return navigate('/login')
+        }
+        else {
+            alert('đăng kí thành công')
+            navigate('/profile')
+            addCartItem()
+        }
+    }
+
+
+
+    const renderTable = () => {
+
+        return cart[0]?.map((prod: ProductModel, index: number) => {
+            return <tr key={index}>
+                <td>{prod.maKhoaHoc}</td>
+                <td>
+                    <img src={prod.hinhAnh} alt="..." height={250} />
+                </td>
+                <td>{prod.ngayTao}</td>
+                <td>{prod.nguoiTao.hoTen}</td>
+                <td>
+                    <button className='btn btn-success me-2' onClick={() => {
+                        { handleSubmit() }
+                    }}>Đăng Kí</button>
+                    <button className='btn btn-danger' onClick={() => {
+                        { handleClearCart() }
+                        { messes() }
+                    }}>Xoá</button>
+                </td>
+            </tr>
+        })
+    }
+
+
 
     return (
         <div className='container'>

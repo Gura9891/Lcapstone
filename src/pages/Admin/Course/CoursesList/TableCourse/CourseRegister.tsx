@@ -3,8 +3,10 @@ import { Space, Table, Tag } from 'antd'
 import { ColumnsType } from 'antd/es/table'
 import { AppDispatch, RootState } from '../../../../../redux/configStore' 
 import { useDispatch, useSelector } from 'react-redux'
-import { CancelRegisterCourseApi, getListCoursePendingRegisterApi, registerCourseApi } from '../../../../../redux/reducers/userReducer'
 
+
+import { arrUserPendingRegisterApi } from '../../../../../redux/reducers/productProducer'
+import { CancelRegisterCourseApi, registerCourseApi } from '../../../../../redux/reducers/userReducer'
 
 type Props = {
   maKhoaHoc: string
@@ -55,7 +57,7 @@ export default function CourseRegister({maKhoaHoc}: Props) {
       const data: DataType[] = arrUserPendingRegisterCourse
 
       useEffect(()=> {
-        dispatch(getListCoursePendingRegisterApi(maKhoaHoc))
+        dispatch(arrUserPendingRegisterApi(maKhoaHoc))
       },[maKhoaHoc])
     
       return <Table columns={columns} dataSource={data} pagination={{ pageSize: 5 }} />

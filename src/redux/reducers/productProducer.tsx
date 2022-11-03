@@ -74,6 +74,8 @@ const initialState: any = {
   arrUserPendingRegisterCourse: [],
   arrUserRegisteredCourse: [],
   arrUserNotWriteCourse: [],
+  cart: [],
+
 };
 
 const productReducer = createSlice({
@@ -98,15 +100,29 @@ const productReducer = createSlice({
       console.log('action.payload,', action.payload);
       
     },
-    getArrUserPendingRegisterCourseAction: (state, action: PayloadAction<RegisterCourse[]>) => {
+    addCart: (state, action: PayloadAction<ProductModel[]>) => {
+      const cartItem = [...action.payload]
+      state.cart.push(cartItem)
+    },
+    clearCart: (state, action: PayloadAction<ProductModel[]>) => {
+      state.cart = []
+    },
+    getArrUserPendingRegisterAction: (state, action: PayloadAction<RegisterCourse[]>) => {
       state.arrUserPendingRegisterCourse = action.payload
     },
-    getArrUserRegisteredCourseAction: (state, action: PayloadAction<RegisterCourse[]>) => {
+    getArrUserRegisteredAction: (state, action: PayloadAction<RegisterCourse[]>) => {
       state.arrUserRegisteredCourse = action.payload
     },
     getArrUserNotWriteCourseAction: (state, action: PayloadAction<RegisterCourse[]>) => {
       state.arrUserNotWriteCourse = action.payload
     },
+    getAllCoursesDirectory: (
+      state,
+      action: PayloadAction<DanhMucKhoaHoc[]>
+    ) => {
+      state.arrProductList = action.payload
+    },
+
   },
 });
 
@@ -116,9 +132,12 @@ export const {
   getAllCourseListAction,
   getSearchProductAction,
   getDetailItemAction,
-  getArrUserPendingRegisterCourseAction,
-  getArrUserRegisteredCourseAction,
-  getArrUserNotWriteCourseAction
+  addCart,
+  clearCart,
+  getArrUserPendingRegisterAction,
+  getArrUserRegisteredAction,
+  getArrUserNotWriteCourseAction,
+  getAllCoursesDirectory
 } = productReducer.actions;
 
 export default productReducer.reducer;
@@ -129,7 +148,7 @@ export const getProductApi = () => { //getListCoursesApi
   return async (dispatch: AppDispatch) => {
     try {
       const result = await http.get(
-        "/QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=GP01"
+        "/QuanLyKhoaHoc/LayDanhSachKhoaHoc"
       );
       console.log(result.data);
       let arrCourses: ProductModel[] = result.data;
@@ -154,77 +173,6 @@ export const getProductListApi = () => {
     }
   };
 };
-//deleteproductlist
-
-//----------------delete course-----------------
-export const deleteCouseAdminApi = (id: string) => {
-  return async (dispatch: AppDispatch) => {
-    try {
-      let result = await http.delete('QuanLyKhoaHoc/XoaKhoaHoc?MaKhoaHoc=' + id)
-      message.success(result.data)
-      dispatch(getProductApi())
-    } catch (err:any) {
-      message.error(err.response.data)
-    }
-  }
-}
-
-
-
-
-//học viên chờ duyệt khóa học
-export const getListUserPendingRegisterCourseApi = (maKhoaHoc: string) => {
-  return async (dispatch: AppDispatch) => {
-    try {
-      let data = {
-        maKhoaHoc: maKhoaHoc
-      }
-      let result = await http.post("QuanLyNguoiDung/LayDanhSachHocVienChoXetDuyet", data)
-      dispatch(getArrUserPendingRegisterCourseAction(result.data))
-    }
-    catch(err) {
-      console.log(err)
-    }
-  }
-}
-//học viên đã đăng ký khóa học
-export const getArrUserRegisteredCourseApi = (maKhoaHoc: string) => {
-  return async (dispatch: AppDispatch) => {
-    try {
-      let data = {
-        maKhoaHoc: maKhoaHoc
-      }
-      let result = await http.post("QuanLyNguoiDung/LayDanhSachHocVienKhoaHoc", data)
-      dispatch(getArrUserRegisteredCourseAction(result.data))
-    }
-    catch(err) {
-      console.log(err)
-    }
-  }
-}
-//user
-//chưa ghi danh
-export const getArrUserNotnotWriteCourseApi = (maKhoaHoc: string) => {
-  return async (dispatch: AppDispatch) => {
-    try {
-      let data = {
-        maKhoaHoc: maKhoaHoc
-      }
-      let result = await http.post("QuanLyNguoiDung/LayDanhSachNguoiDungChuaGhiDanh", data)
-      dispatch(getArrUserNotWriteCourseAction(result.data))
-    }
-    catch(err) {
-      console.log(err)
-    }
-  }
-}
-//đã ghi danh
-
-
-
-
-
-
 
 export const getCourseListApi = (maDanhMuc: any ) => {
   return async (dispatch: AppDispatch) => {
@@ -292,8 +240,13 @@ export const getDetailApi = (maKhoaHoc: any ) => {
   };
 };
 
-//admin
-export const addCourseAdmin = (course: WelcomeAdmin, file: FormData) => {
+
+
+//course admin
+
+
+//addcourse
+export const addCourseAdminApi = (course: WelcomeAdmin, file: FormData) => {
   return async (dispatch: AppDispatch) => {
     try {
       let result = await http
@@ -310,7 +263,8 @@ export const addCourseAdmin = (course: WelcomeAdmin, file: FormData) => {
   }
 }
 
-export const updateCourseAdmin = (course: WelcomeAdmin, file: FormData) => {
+//updatecourse
+export const updateCourseAdminApi = (course: WelcomeAdmin, file: FormData) => {
   return async (dispatch: AppDispatch) => {
     await http.put('QuanLyKhoaHoc/CapNhatKhoaHoc', course)
     try {
@@ -321,5 +275,76 @@ export const updateCourseAdmin = (course: WelcomeAdmin, file: FormData) => {
     }
   }
 }
+//đang chờ duyệt khóa học
+export const arrUserPendingRegisterApi = (maKhoaHoc: string) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      let data = {
+        maKhoaHoc: maKhoaHoc
+      }
+      let result = await http.post("QuanLyNguoiDung/LayDanhSachHocVienChoXetDuyet", data)
+      dispatch(getArrUserPendingRegisterAction(result.data))
+    }
+    catch(err) {
+      console.log(err)
+    }
+  }
+}
 
+// arr user đã đăng ký thành công khóa học
+export const arrUserRegisteredCourseApi = (maKhoaHoc: string) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      let data = {
+        maKhoaHoc: maKhoaHoc
+      }
+      let result = await http.post("QuanLyNguoiDung/LayDanhSachHocVienKhoaHoc", data)
+      dispatch(getArrUserRegisteredAction(result.data))
+    }
+    catch(err) {
+      console.log(err)
+    }
+  }
+}
+//delete khóa học
+export const deleteCouseAdminApi = (id: string) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      let result = await http.delete('QuanLyKhoaHoc/XoaKhoaHoc?MaKhoaHoc=' + id)
+      message.success(result.data)
+      dispatch(getProductApi())
+    } catch (err:any) {
+      message.error(err.response.data)
+    }
+  }
+}
+//danh sách user chưa đăng ký khóa học
+export const arrUserNotWriteCourseApi = (maKhoaHoc: string) => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      let data = {
+        maKhoaHoc: maKhoaHoc
+      }
+      let result = await http.post("QuanLyNguoiDung/LayDanhSachNguoiDungChuaGhiDanh", data)
+      dispatch(getArrUserNotWriteCourseAction(result.data))
+    }
+    catch(err) {
+      console.log(err)
+    }
+  }
+}
 
+//test api
+export const getCourseDirectoryApi = () => {
+  return async (dispatch: AppDispatch) => {
+    try {
+      const result = await http.get('/QuanLyKhoaHoc/LayDanhMucKhoaHoc')
+      console.log(result)
+      let arrCoursesDirectory: DanhMucKhoaHoc[] = result.data
+      const action = getAllCoursesDirectory(arrCoursesDirectory)
+      dispatch(action)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}

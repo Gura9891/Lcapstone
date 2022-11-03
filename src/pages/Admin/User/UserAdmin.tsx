@@ -15,7 +15,7 @@ export default function UserAdmin ({}: Props) {
     <div className='container'>
       <div className='d-flex flex-column'>
         <ModalUser />
-        <div className='paper my-4 animate__animated animate__fadeIn animate__delay-1s'>
+        <div className='paper my-4'>
           <p className='fs-3'>Tìm kiếm tài khoản</p>
           <input
             className='mb-4 w-100'

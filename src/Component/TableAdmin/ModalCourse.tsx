@@ -3,9 +3,8 @@ import React, { useState } from 'react'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import { useDispatch, useSelector } from 'react-redux'
-import { AppDispatch, RootState } from '../../redux/configStore'
-import { addCourseAdmin, DanhMuc, ProductModel, updateCourseAdmin } from '../../redux/reducers/productProducer'
-
+import { AppDispatch,RootState } from '../../redux/configStore'
+import { addCourseAdminApi, DanhMuc, ProductModel, updateCourseAdminApi } from '../../redux/reducers/productProducer'
 
 type Props = {
   course?: ProductModel
@@ -15,7 +14,7 @@ export default function ModalCourse ({ course }: Props) {
   const [loading, setLoading] = useState(false)
   const [open, setOpen] = useState(false)
   const dispatch: AppDispatch = useDispatch()
-  const { arrCourseDirectory } = useSelector(
+  const {  arrProductList } = useSelector(
     (state: RootState) => state.productProducer
   )
 
@@ -66,9 +65,9 @@ export default function ModalCourse ({ course }: Props) {
         taiKhoanNguoiTao: values.taiKhoanNguoiTao
       }
       if (course) {
-        dispatch(updateCourseAdmin(formData, data))
+        dispatch(updateCourseAdminApi(formData, data))
       } else {
-        dispatch(addCourseAdmin(formData, data))
+        dispatch(addCourseAdminApi(formData, data))
       }
       setLoading(true)
       setTimeout(() => {
@@ -104,7 +103,6 @@ export default function ModalCourse ({ course }: Props) {
         </Button>
       ) : (
         <Button
-          className='green-button fs-4 py-4 h-100 w-25 animate__animated animate__fadeIn'
           type='primary'
           onClick={showModal}
         >
@@ -275,7 +273,7 @@ export default function ModalCourse ({ course }: Props) {
                 onBlur={form.handleBlur}
                 defaultValue={form.values.maDanhMucKhoaHoc}
               >
-                {arrCourseDirectory.map((item: DanhMuc, index: number) => {
+                {arrProductList.map((item: DanhMuc, index: number) => {
                   return (
                     <option value={item.maDanhMuc} key={index}>
                       {item.tenDanhMuc}
