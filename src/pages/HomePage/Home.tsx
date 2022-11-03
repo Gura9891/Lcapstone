@@ -53,7 +53,7 @@ export default function Home({ title }: Props) {
               </div>
               <div className="carousel-right">
                 <h2>{item.tenKhoaHoc}</h2>
-                <p>{item.moTa.slice(0, 100) + '...'}</p>
+                <p>{item.moTa.slice(0, 100) + "..."}</p>
                 <NavLink className="btn" to={`/detail/${item.maKhoaHoc}`}>
                   View detail
                 </NavLink>
@@ -70,9 +70,9 @@ export default function Home({ title }: Props) {
               </div>
               <div className="carousel-right">
                 <h2>{item.tenKhoaHoc}</h2>
-                <p>{item.moTa.slice(0, 100) + '...'}</p>
+                <p>{item.moTa.slice(0, 100) + "..."}</p>
                 <NavLink className="btn" to={`/detail/${item.maKhoaHoc}`}>
-                  Xem Chi  Tiết
+                  Xem Chi Tiết
                 </NavLink>
               </div>
             </div>
@@ -83,12 +83,12 @@ export default function Home({ title }: Props) {
   };
 
   const contentStyle: React.CSSProperties = {
-    height: 'auto',
-    color: '#002333',
+    height: "auto",
+    color: "#002333",
     // lineHeight: '10px',
-    textAlign: 'center',
-    background: '#232121',
-    padding:'50px'
+    textAlign: "center",
+    background: "#232121",
+    padding: "50px",
   };
 
   return (
@@ -96,6 +96,15 @@ export default function Home({ title }: Props) {
       <div className="showing">
         <section className="slider">
           <div className="container">
+            <div className="video_carousel">
+              <video className="img-fluid" autoPlay loop muted>
+                <source
+                  src="https://mdbcdn.b-cdn.net/img/video/Tropical.mp4"
+                  type="video/mp4"
+                />
+              </video>
+              <div className="gray_overlay"></div>
+            </div>
             <div
               id="carouselExampleIndicators"
               className="carousel slide"
@@ -110,7 +119,10 @@ export default function Home({ title }: Props) {
                 data-bs-target="#carouselExampleIndicators"
                 data-bs-slide="prev"
               >
-                <span className="carousel-control-prev-icon" aria-hidden="true" />
+                <span
+                  className="carousel-control-prev-icon"
+                  aria-hidden="true"
+                />
                 <span className="visually-hidden">Previous</span>
               </button>
               <button
@@ -119,7 +131,10 @@ export default function Home({ title }: Props) {
                 data-bs-target="#carouselExampleIndicators"
                 data-bs-slide="next"
               >
-                <span className="carousel-control-next-icon" aria-hidden="true" />
+                <span
+                  className="carousel-control-next-icon"
+                  aria-hidden="true"
+                />
                 <span className="visually-hidden">Next</span>
               </button>
             </div>
@@ -152,16 +167,18 @@ export default function Home({ title }: Props) {
               <div className="testimonial__content">
                 <div className="testimonial__item">
                   <div className="item__content">
-                    <a href="#" className="comment-img"><img src="../../assets/img/user-avatar.jpg" alt="..." /></a>
+                    <a href="#" className="comment-img">
+                      <img src="../../assets/img/user-avatar.jpg" alt="..." />
+                    </a>
                     <div className="quote">
                       <i className="fas fa-quote-left"></i>
                       <span>OMG! I cannot believe. It's Awesome"</span>
                     </div>
                     <span>
-                      My new site is so much faster and easier to work with than my
-                      old site. They are here to help the customers to get their
-                      success. Nemo sit eos, quod minus eius illo labore. Pellen
-                      tesque libero ut justo, ultrices in ligula.
+                      My new site is so much faster and easier to work with than
+                      my old site. They are here to help the customers to get
+                      their success. Nemo sit eos, quod minus eius illo labore.
+                      Pellen tesque libero ut justo, ultrices in ligula.
                     </span>
                     <div className="testimonial__info">
                       <h3>Johnson William</h3>
@@ -181,16 +198,18 @@ export default function Home({ title }: Props) {
               <div className="testimonial__content">
                 <div className="testimonial__item">
                   <div className="item__content">
-                    <a href="#" className="comment-img"><img src="../../assets/avatar1.jpg" alt="..." /></a>
+                    <a href="#" className="comment-img">
+                      <img src="../../assets/avatar1.jpg" alt="..." />
+                    </a>
                     <div className="quote">
                       <i className="fas fa-quote-left"></i>
                       <span>OMG! I cannot believe. It's Awesome"</span>
                     </div>
                     <span>
-                      My new site is so much faster and easier to work with than my
-                      old site. They are here to help the customers to get their
-                      success. Nemo sit eos, quod minus eius illo labore. Pellen
-                      tesque libero ut justo, ultrices in ligula.
+                      My new site is so much faster and easier to work with than
+                      my old site. They are here to help the customers to get
+                      their success. Nemo sit eos, quod minus eius illo labore.
+                      Pellen tesque libero ut justo, ultrices in ligula.
                     </span>
                     <div className="testimonial__info">
                       <h3>Kevin De Bruyne</h3>
@@ -210,16 +229,18 @@ export default function Home({ title }: Props) {
               <div className="testimonial__content">
                 <div className="testimonial__item">
                   <div className="item__content">
-                    <a href="#" className="comment-img"><img src="../../assets/img/avatar2.jpg" alt="..." /></a>
+                    <a href="#" className="comment-img">
+                      <img src="../../assets/img/avatar2.jpg" alt="..." />
+                    </a>
                     <div className="quote">
                       <i className="fas fa-quote-left"></i>
                       <span>OMG! I cannot believe. It's Awesome"</span>
                     </div>
                     <span>
-                      My new site is so much faster and easier to work with than my
-                      old site. They are here to help the customers to get their
-                      success. Nemo sit eos, quod minus eius illo labore. Pellen
-                      tesque libero ut justo, ultrices in ligula.
+                      My new site is so much faster and easier to work with than
+                      my old site. They are here to help the customers to get
+                      their success. Nemo sit eos, quod minus eius illo labore.
+                      Pellen tesque libero ut justo, ultrices in ligula.
                     </span>
                     <div className="testimonial__info">
                       <h3>Johnson Jennyfer</h3>

@@ -5,7 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { RootState } from '../../redux/configStore';
 import { addCart, clearCart, getDetailApi, ProductModel } from '../../redux/reducers/productProducer';
 import { ACCESS_TOKEN, getStore } from '../../util/setting';
-
+import { Divider, Button, Table, notification } from "antd";
 type Props = {
 
 }
@@ -27,12 +27,12 @@ export default function Cart({ }: Props) {
         )
     }
 
-    const addCartItem = () => {
-        const objText = cart;
-        dispatch(
-            addCart([objText])
-        )
-    }
+    // const addCartItem = () => {
+    //     const objText = cart;
+    //     dispatch(
+    //         addCart([objText])
+    //     )
+    // }
 
     const messes = () => {
         alert('ban co muon xoa khong')
@@ -48,7 +48,7 @@ export default function Cart({ }: Props) {
         else {
             alert('đăng kí thành công')
             navigate('/profile')
-            addCartItem()
+            // addCartItem()
         }
     }
 
@@ -80,6 +80,7 @@ export default function Cart({ }: Props) {
 
 
     return (
+
         <div className='container'>
             <div>
                 <h3>Giỏ Hàng </h3>

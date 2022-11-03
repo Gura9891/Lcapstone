@@ -1,8 +1,11 @@
 @import "./variables/variables";
+@import "./base/home.scss";
 @import "./base/index";
 @import "./base/courseslist";
 @import "./base/login";
 @import "./base/profile";
 @import "./base/register";
 @import "./base/detail";
-@import "./base/adminLogin"
+@import "./base/adminLogin";
+@import "./base/cart";
+@import "./base/user"
