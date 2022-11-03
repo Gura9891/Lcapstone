@@ -5,7 +5,7 @@ import { Button, message, Space } from "antd";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-import {  addCart, ProductModel } from "../../redux/reducers/productProducer";
+import {   ProductModel } from "../../redux/reducers/productProducer";
 
 type Props = {
   detailProduct: ProductModel;
@@ -19,9 +19,7 @@ export default function DetailProduct({ detailProduct }: Props) {
   const handleCart = () => {
     const causer = detailProduct
     console.log({causer});
-    dispatch(
-      addCart([causer])
-    )
+   
 
     
   }
