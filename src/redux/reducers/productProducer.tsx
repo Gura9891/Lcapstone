@@ -104,6 +104,9 @@ const productReducer = createSlice({
       const cartItem = [...action.payload]
       state.cart.push(cartItem)
     },
+    clearCart: (state, action: PayloadAction<ProductModel[]>) => {
+      state.cart = []
+    },
     getArrUserPendingRegisterAction: (state, action: PayloadAction<RegisterCourse[]>) => {
       state.arrUserPendingRegisterCourse = action.payload
     },
@@ -130,6 +133,7 @@ export const {
   getSearchProductAction,
   getDetailItemAction,
   addCart,
+  clearCart,
   getArrUserPendingRegisterAction,
   getArrUserRegisteredAction,
   getArrUserNotWriteCourseAction,
